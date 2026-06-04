@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in — Manohar GenAI</title>
+    <meta name="description" content="Sign in to your Manohar GenAI account.">
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306090c'/%3E%3Cpath d='M8 17l5 5 11-11' stroke='%2300e599' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="auth-body">
+        <!-- Left: form -->
+        <main class="auth-panel">
+            <div class="auth-top">
+                <a href="index.html" class="brand">
+                    <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.16"/>
+                        <path d="M8 17l5 5 11-11" stroke="url(#m)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs><linearGradient id="m" x1="8" y1="13" x2="24" y2="22"><stop stop-color="#00e599"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs>
+                    </svg>
+                    <span>Manohar<span class="brand-sub">GenAI</span></span>
+                </a>
+                <a href="index.html" class="auth-back">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3m0 0l4 4M3 8l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Back to home
+                </a>
+            </div>
+
+            <div class="auth-main">
+                <div class="auth-head">
+                    <h1>Welcome back</h1>
+                    <p>New to Manohar GenAI? <a href="signup.html">Create an account</a></p>
+                </div>
+
+                <!-- OAuth -->
+                <button type="button" class="oauth-btn" id="googleBtn">
+                    <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0012 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 010-4.2V7.06H2.18a11 11 0 000 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A11 11 0 0012 1 11 11 0 002.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+                    Continue with Google
+                </button>
+
+                <div class="auth-divider">or sign in with email</div>
+
+                <!-- Email form -->
+                <form class="auth-form" id="loginForm" novalidate>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <div class="field-input">
+                            <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+                        </div>
+                        <span class="field-error" data-for="email"></span>
+                    </div>
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <div class="field-input">
+                            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                            <button type="button" class="toggle-pw" data-toggle="password" aria-label="Show password">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+                            </button>
+                        </div>
+                        <span class="field-error" data-for="password"></span>
+                    </div>
+
+                    <div class="auth-row">
+                        <label class="checkbox">
+                            <input type="checkbox" id="remember" checked>
+                            <span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="link-muted" id="forgotLink">Forgot password?</a>
+                    </div>
+
+                    <div class="auth-msg" id="authMsg"></div>
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-full auth-submit" id="submitBtn">
+                        Sign in
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </form>
+
+                <p class="auth-foot">
+                    Protected by industry-standard encryption.<br>
+                    By signing in you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a>.
+                </p>
+            </div>
+        </main>
+
+        <!-- Right: showcase -->
+        <aside class="auth-aside">
+            <div class="auth-aside-grid"></div>
+            <div class="auth-aside-inner">
+                <p class="aside-quote">
+                    The AI assistant that <span class="text-gradient">reads, reasons, and cites</span> — turning your documentation into instant answers.
+                </p>
+                <div class="aside-points">
+                    <div class="aside-point">
+                        <span class="aside-check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        Reasoning-based retrieval — no vector database
+                    </div>
+                    <div class="aside-point">
+                        <span class="aside-check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        Every answer cited to the exact page
+                    </div>
+                    <div class="aside-point">
+                        <span class="aside-check"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        Web chat, widget, MCP &amp; CLI — one engine
+                    </div>
+                </div>
+                <div class="aside-card">
+                    <div class="aside-card-top">
+                        <span class="live-dot"></span>
+                        <span class="aside-card-label">live · helpassistant.salesworx.ae</span>
+                    </div>
+                    <p class="aside-card-q">"How do I add a new customer?"</p>
+                    <p class="aside-card-a">Open Customer Management → Add New, fill in Name, Code and Address, then click Save.</p>
+                    <span class="aside-card-cite">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M4 2h6l3 3v9H4z" stroke="currentColor" stroke-width="1.3"/></svg>
+                        CS BO Guide · p.41
+                    </span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
