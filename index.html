@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harness Agent | Context-Aware AI Agents That Understand Your Business</title>
+    <meta name="description" content="Deploy intelligent, context-graph-powered AI agents that solve real enterprise problems — from natural language database queries to automated document processing.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3Cpath d='M10 16l4 4 8-8' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" fill="url(#logo-gradient)"/>
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M10 16l4 4 8-8" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Harness<span class="logo-accent">Agent</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-ghost">Book Demo</a>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-links">
+            <li><a href="#products">Products</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="btn btn-primary btn-full">Get Started</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="grid-pattern"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-badge animate-fade-up">
+                <span class="badge-dot"></span>
+                <span>Now in Private Beta</span>
+            </div>
+            <h1 class="hero-title animate-fade-up delay-1">
+                Context-Aware AI Agents<br>
+                <span class="gradient-text">That Understand Your Business</span>
+            </h1>
+            <p class="hero-subtitle animate-fade-up delay-2">
+                Deploy intelligent, context-graph-powered AI agents that solve real enterprise problems
+                &mdash; from natural language database queries to automated document processing &mdash; 
+                without writing a single line of code.
+            </p>
+            <div class="hero-cta animate-fade-up delay-3">
+                <a href="#contact" class="btn btn-primary btn-lg">
+                    <span>Start Free Trial</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#how-it-works" class="btn btn-outline btn-lg">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 7l5 3-5 3V7z" fill="currentColor"/>
+                    </svg>
+                    <span>Watch Demo</span>
+                </a>
+            </div>
+            <div class="hero-stats animate-fade-up delay-4">
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">AI Agents</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Accuracy</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">10x</span>
+                    <span class="stat-label">Faster Processing</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Autonomous Ops</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual animate-fade-up delay-4">
+            <div class="context-graph">
+                <div class="graph-node node-center">
+                    <div class="node-pulse"></div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="graph-node node-1">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 7V4h16v3M9 20h6M12 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Text-to-SQL</span>
+                </div>
+                <div class="graph-node node-2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 12h4l3-9 4 18 3-9h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Route Optimization</span>
+                </div>
+                <div class="graph-node node-3">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Planogram</span>
+                </div>
+                <div class="graph-node node-4">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Doc Processing</span>
+                </div>
+                <div class="graph-node node-5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Support Agent</span>
+                </div>
+                <svg class="graph-lines" viewBox="0 0 400 400">
+                    <line x1="200" y1="200" x2="200" y2="60" class="graph-line"/>
+                    <line x1="200" y1="200" x2="340" y2="140" class="graph-line"/>
+                    <line x1="200" y1="200" x2="340" y2="280" class="graph-line"/>
+                    <line x1="200" y1="200" x2="60" y2="280" class="graph-line"/>
+                    <line x1="200" y1="200" x2="60" y2="140" class="graph-line"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By -->
+    <section class="trusted-by">
+        <div class="container">
+            <p class="trusted-label">Trusted by forward-thinking enterprises</p>
+            <div class="logo-scroll">
+                <div class="logo-track">
+                    <span class="company-logo">Fortune 500 Retail</span>
+                    <span class="company-logo">Global Logistics Co.</span>
+                    <span class="company-logo">Enterprise FMCG</span>
+                    <span class="company-logo">Smart Supply Chain</span>
+                    <span class="company-logo">Digital Commerce Inc.</span>
+                    <span class="company-logo">AI-First Bank</span>
+                    <span class="company-logo">Fortune 500 Retail</span>
+                    <span class="company-logo">Global Logistics Co.</span>
+                    <span class="company-logo">Enterprise FMCG</span>
+                    <span class="company-logo">Smart Supply Chain</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Products</span>
+                <h2 class="section-title">Five Agents. <span class="gradient-text">One Platform.</span></h2>
+                <p class="section-subtitle">Each agent is powered by our proprietary Context Graph engine that maps your business logic, data relationships, and operational constraints.</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1: QueryMind -->
+                <div class="product-card" data-product="querymind">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#p1-bg)"/>
+                            <defs><linearGradient id="p1-bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1" stop-opacity="0.1"/><stop offset="100%" stop-color="#6366f1" stop-opacity="0.05"/></linearGradient></defs>
+                            <path d="M16 20h16M16 24h12M16 28h8" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="32" cy="32" r="6" stroke="#6366f1" stroke-width="2"/>
+                            <path d="M36 36l3 3" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">QueryMind</h3>
+                        <p class="product-tagline">Context Graph Text-to-SQL Agent</p>
+                        <p class="product-description">Ask business questions in plain English. Our Context Graph understands your schema, relationships, and business rules to generate accurate SQL queries with 98%+ accuracy.</p>
+                        <ul class="product-features">
+                            <li>Natural language to complex SQL translation</li>
+                            <li>Schema-aware context graph mapping</li>
+                            <li>Multi-database support (PostgreSQL, MySQL, BigQuery)</li>
+                            <li>Auto-generates visualizations from query results</li>
+                        </ul>
+                    </div>
+                    <div class="product-visual">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                                <span class="code-title">QueryMind</span>
+                            </div>
+                            <pre><code><span class="code-comment">// User asks:</span>
+<span class="code-string">"Show me top 10 customers by revenue
+ this quarter who haven't reordered"</span>
+
+<span class="code-comment">// QueryMind generates:</span>
+<span class="code-keyword">SELECT</span> c.name, <span class="code-func">SUM</span>(o.total)
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> c.id = o.customer_id
+<span class="code-keyword">WHERE</span> o.date >= <span class="code-func">DATE_TRUNC</span>(<span class="code-string">'quarter'</span>)
+<span class="code-keyword">GROUP BY</span> c.name
+<span class="code-keyword">ORDER BY</span> <span class="code-func">SUM</span>(o.total) <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-number">10</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: RouteForge -->
+                <div class="product-card" data-product="routeforge">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#p2-bg)"/>
+                            <defs><linearGradient id="p2-bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981" stop-opacity="0.1"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.05"/></linearGradient></defs>
+                            <circle cx="16" cy="16" r="3" stroke="#10b981" stroke-width="2"/>
+                            <circle cx="32" cy="16" r="3" stroke="#10b981" stroke-width="2"/>
+                            <circle cx="32" cy="32" r="3" stroke="#10b981" stroke-width="2"/>
+                            <circle cx="16" cy="32" r="3" stroke="#10b981" stroke-width="2"/>
+                            <path d="M19 16h10M32 19v10M29 32H19M16 29V19" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 2"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">RouteForge</h3>
+                        <p class="product-tagline">AI Route Optimization Engine</p>
+                        <p class="product-description">Optimize delivery routes, fleet management, and logistics operations using AI that considers real-time traffic, time windows, vehicle capacity, and business priorities.</p>
+                        <ul class="product-features">
+                            <li>Real-time multi-constraint optimization</li>
+                            <li>Dynamic re-routing with live traffic data</li>
+                            <li>Fleet capacity and time-window management</li>
+                            <li>30% average reduction in delivery costs</li>
+                        </ul>
+                    </div>
+                    <div class="product-visual">
+                        <div class="route-viz">
+                            <div class="route-map">
+                                <div class="route-point start">A</div>
+                                <div class="route-path"></div>
+                                <div class="route-point mid">B</div>
+                                <div class="route-path"></div>
+                                <div class="route-point mid">C</div>
+                                <div class="route-path"></div>
+                                <div class="route-point end">D</div>
+                            </div>
+                            <div class="route-stats">
+                                <div class="route-stat">
+                                    <span class="route-stat-value">-32%</span>
+                                    <span class="route-stat-label">Distance</span>
+                                </div>
+                                <div class="route-stat">
+                                    <span class="route-stat-value">-45min</span>
+                                    <span class="route-stat-label">Time Saved</span>
+                                </div>
+                                <div class="route-stat">
+                                    <span class="route-stat-value">98%</span>
+                                    <span class="route-stat-label">On-Time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: ShelfSense -->
+                <div class="product-card" data-product="shelfsense">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#p3-bg)"/>
+                            <defs><linearGradient id="p3-bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f59e0b" stop-opacity="0.1"/><stop offset="100%" stop-color="#f59e0b" stop-opacity="0.05"/></linearGradient></defs>
+                            <rect x="12" y="14" width="24" height="20" rx="2" stroke="#f59e0b" stroke-width="2"/>
+                            <path d="M12 22h24M12 30h24M20 14v16M28 14v16" stroke="#f59e0b" stroke-width="1.5"/>
+                            <circle cx="36" cy="12" r="4" fill="#f59e0b"/>
+                            <path d="M34 12l1.5 1.5 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">ShelfSense</h3>
+                        <p class="product-tagline">Planogram Compliance Vision Agent</p>
+                        <p class="product-description">Automatically verify shelf compliance using computer vision. Detect out-of-stock, misplaced products, and planogram deviations from store images in real-time.</p>
+                        <ul class="product-features">
+                            <li>Real-time shelf image analysis via Vision AI</li>
+                            <li>Automatic out-of-stock detection</li>
+                            <li>Planogram deviation alerts with visual diff</li>
+                            <li>95%+ compliance detection accuracy</li>
+                        </ul>
+                    </div>
+                    <div class="product-visual">
+                        <div class="shelf-viz">
+                            <div class="shelf-grid">
+                                <div class="shelf-item compliant"></div>
+                                <div class="shelf-item compliant"></div>
+                                <div class="shelf-item violation"></div>
+                                <div class="shelf-item compliant"></div>
+                                <div class="shelf-item compliant"></div>
+                                <div class="shelf-item oos"></div>
+                                <div class="shelf-item compliant"></div>
+                                <div class="shelf-item compliant"></div>
+                                <div class="shelf-item compliant"></div>
+                            </div>
+                            <div class="shelf-legend">
+                                <span class="legend-item"><span class="dot compliant"></span>Compliant</span>
+                                <span class="legend-item"><span class="dot violation"></span>Misplaced</span>
+                                <span class="legend-item"><span class="dot oos"></span>OOS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: DocFlow -->
+                <div class="product-card" data-product="docflow">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#p4-bg)"/>
+                            <defs><linearGradient id="p4-bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ec4899" stop-opacity="0.1"/><stop offset="100%" stop-color="#ec4899" stop-opacity="0.05"/></linearGradient></defs>
+                            <path d="M20 12h-4a2 2 0 00-2 2v20a2 2 0 002 2h16a2 2 0 002-2V14a2 2 0 00-2-2h-4" stroke="#ec4899" stroke-width="2"/>
+                            <rect x="20" y="10" width="8" height="4" rx="1" stroke="#ec4899" stroke-width="2"/>
+                            <path d="M18 22h12M18 26h12M18 30h8" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">DocFlow</h3>
+                        <p class="product-tagline">Purchase Order Document Processing</p>
+                        <p class="product-description">Extract, validate, and process purchase orders using LLM + Vision Encoder. Handle handwritten, scanned, and digital POs with enterprise-grade accuracy and audit trails.</p>
+                        <ul class="product-features">
+                            <li>Multi-modal extraction (LLM + Vision Encoder)</li>
+                            <li>Handles scanned, handwritten, and digital POs</li>
+                            <li>Auto-validation against master data</li>
+                            <li>Complete audit trail and compliance logging</li>
+                        </ul>
+                    </div>
+                    <div class="product-visual">
+                        <div class="doc-viz">
+                            <div class="doc-flow-steps">
+                                <div class="doc-step">
+                                    <div class="doc-step-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                    <span>Upload PO</span>
+                                </div>
+                                <div class="doc-arrow">&rarr;</div>
+                                <div class="doc-step">
+                                    <div class="doc-step-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                    </div>
+                                    <span>AI Extract</span>
+                                </div>
+                                <div class="doc-arrow">&rarr;</div>
+                                <div class="doc-step">
+                                    <div class="doc-step-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                    <span>Validate</span>
+                                </div>
+                                <div class="doc-arrow">&rarr;</div>
+                                <div class="doc-step active">
+                                    <div class="doc-step-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                    <span>ERP Sync</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: ResolveAI -->
+                <div class="product-card" data-product="resolveai">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#p5-bg)"/>
+                            <defs><linearGradient id="p5-bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06b6d4" stop-opacity="0.1"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0.05"/></linearGradient></defs>
+                            <path d="M34 28c0 4.418-4.477 8-10 8-1.727 0-3.365-.31-4.8-.87L14 38v-4.26C12.14 32.16 11 30.18 11 28c0-4.418 4.477-8 10-8" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M37 20c0 4.418-4.477 8-10 8s-10-3.582-10-8 4.477-8 10-8 10 3.582 10 8z" stroke="#06b6d4" stroke-width="2"/>
+                            <path d="M24 18v4M24 24h.01" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">ResolveAI</h3>
+                        <p class="product-tagline">Business Support Ticket Agent</p>
+                        <p class="product-description">Autonomously resolve support tickets by understanding context, querying knowledge bases, and executing resolution workflows. Escalates to humans only when needed.</p>
+                        <ul class="product-features">
+                            <li>Autonomous ticket classification and routing</li>
+                            <li>Knowledge base integration and RAG</li>
+                            <li>Multi-step resolution workflow execution</li>
+                            <li>Smart escalation with full context handoff</li>
+                        </ul>
+                    </div>
+                    <div class="product-visual">
+                        <div class="ticket-viz">
+                            <div class="ticket-item">
+                                <div class="ticket-status resolved"></div>
+                                <div class="ticket-info">
+                                    <span class="ticket-id">#4521</span>
+                                    <span class="ticket-text">Password reset not working</span>
+                                </div>
+                                <span class="ticket-badge auto">Auto-Resolved</span>
+                            </div>
+                            <div class="ticket-item">
+                                <div class="ticket-status resolved"></div>
+                                <div class="ticket-info">
+                                    <span class="ticket-id">#4522</span>
+                                    <span class="ticket-text">Invoice discrepancy Q3</span>
+                                </div>
+                                <span class="ticket-badge auto">Auto-Resolved</span>
+                            </div>
+                            <div class="ticket-item">
+                                <div class="ticket-status escalated"></div>
+                                <div class="ticket-info">
+                                    <span class="ticket-id">#4523</span>
+                                    <span class="ticket-text">Custom integration request</span>
+                                </div>
+                                <span class="ticket-badge human">Escalated</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">From Setup to <span class="gradient-text">Production in Hours</span></h2>
+                <p class="section-subtitle">Our Context Graph technology maps your business logic automatically, so agents understand your data from day one.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Connect Your Data</h3>
+                    <p>Connect databases, APIs, document stores, and knowledge bases. Our system auto-discovers schemas and relationships.</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="2"><line x1="0" y1="1" x2="40" y2="1" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Build Context Graph</h3>
+                    <p>Our engine automatically builds a semantic graph of your business context, rules, and data relationships.</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="2"><line x1="0" y1="1" x2="40" y2="1" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Deploy Agents</h3>
+                    <p>Choose your agents, configure guardrails, and deploy. Agents start resolving tasks autonomously within hours.</p>
+                </div>
+            </div>
+
+            <!-- Architecture Diagram -->
+            <div class="architecture">
+                <div class="arch-label">Platform Architecture</div>
+                <div class="arch-diagram">
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">Data Sources</span>
+                        <div class="arch-items">
+                            <span class="arch-item">PostgreSQL</span>
+                            <span class="arch-item">MongoDB</span>
+                            <span class="arch-item">S3 / Blob</span>
+                            <span class="arch-item">REST APIs</span>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">&darr;</div>
+                    <div class="arch-layer highlight">
+                        <span class="arch-layer-label">Context Graph Engine</span>
+                        <div class="arch-items">
+                            <span class="arch-item">Schema Discovery</span>
+                            <span class="arch-item">Relationship Mapping</span>
+                            <span class="arch-item">Business Rules</span>
+                            <span class="arch-item">Semantic Index</span>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">&darr;</div>
+                    <div class="arch-layer">
+                        <span class="arch-layer-label">AI Agents</span>
+                        <div class="arch-items">
+                            <span class="arch-item">QueryMind</span>
+                            <span class="arch-item">RouteForge</span>
+                            <span class="arch-item">ShelfSense</span>
+                            <span class="arch-item">DocFlow</span>
+                            <span class="arch-item">ResolveAI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-tag">About Us</span>
+                    <h2 class="section-title">Built by Engineers Who've <span class="gradient-text">Shipped AI at Scale</span></h2>
+                    <p class="about-text">Harness Agent was born from the frustration of watching enterprises struggle with AI adoption. We saw brilliant data teams spending months on problems that should take hours.</p>
+                    <p class="about-text">Our Context Graph technology is the breakthrough &mdash; it gives AI agents the same contextual understanding of your business that your best employees have, but operates 24/7 at machine speed.</p>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div>
+                                <h4>Enterprise Security</h4>
+                                <p>SOC2, GDPR, HIPAA compliant. Your data never leaves your infrastructure.</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div>
+                                <h4>Production Ready</h4>
+                                <p>99.9% uptime SLA. Battle-tested with Fortune 500 workloads.</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div>
+                                <h4>Human-in-the-Loop</h4>
+                                <p>Agents escalate gracefully. You stay in control, always.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-metrics">
+                    <div class="metric-card">
+                        <span class="metric-number" data-target="98">0</span><span class="metric-suffix">%</span>
+                        <span class="metric-label">Query Accuracy</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number" data-target="10">0</span><span class="metric-suffix">x</span>
+                        <span class="metric-label">Faster than Manual</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number" data-target="70">0</span><span class="metric-suffix">%</span>
+                        <span class="metric-label">Tickets Auto-Resolved</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number" data-target="30">0</span><span class="metric-suffix">%</span>
+                        <span class="metric-label">Cost Reduction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-bg">
+                    <div class="cta-orb cta-orb-1"></div>
+                    <div class="cta-orb cta-orb-2"></div>
+                </div>
+                <div class="cta-content">
+                    <h2>Ready to Harness the Power of<br><span class="gradient-text">Context-Aware AI?</span></h2>
+                    <p>Join leading enterprises that are already transforming their operations with intelligent agents.</p>
+                    <form class="cta-form" id="contact-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Work Email" required>
+                        </div>
+                        <div class="form-row">
+                            <select required>
+                                <option value="" disabled selected>Interested In</option>
+                                <option value="querymind">QueryMind - Text-to-SQL</option>
+                                <option value="routeforge">RouteForge - Route Optimization</option>
+                                <option value="shelfsense">ShelfSense - Planogram Compliance</option>
+                                <option value="docflow">DocFlow - Document Processing</option>
+                                <option value="resolveai">ResolveAI - Support Agent</option>
+                                <option value="platform">Full Platform</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <span>Book a Demo</span>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="cta-note">Free 14-day trial. No credit card required. Setup in under 30 minutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 32 32" fill="none">
+                                <circle cx="16" cy="16" r="14" fill="url(#footer-logo-gradient)"/>
+                                <defs>
+                                    <linearGradient id="footer-logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#6366f1"/>
+                                        <stop offset="100%" stop-color="#06b6d4"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M10 16l4 4 8-8" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Harness<span class="logo-accent">Agent</span></span>
+                    </a>
+                    <p class="footer-tagline">Context-Aware AI Agents That Understand Your Business</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a href="#" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#products">QueryMind</a></li>
+                        <li><a href="#products">RouteForge</a></li>
+                        <li><a href="#products">ShelfSense</a></li>
+                        <li><a href="#products">DocFlow</a></li>
+                        <li><a href="#products">ResolveAI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Harness Agent. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
