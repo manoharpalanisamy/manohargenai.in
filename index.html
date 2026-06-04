@@ -3,574 +3,520 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harness Agent | Context-Aware AI Agents for Enterprise</title>
-    <meta name="description" content="Deploy intelligent, context-graph-powered AI agents that solve real enterprise problems. Text-to-SQL, Route Optimization, Document Processing, and more.">
+
+    <!-- SEO / Meta -->
+    <title>Manohar GenAI — AI Support Assistants & Reasoning-Based RAG</title>
+    <meta name="description" content="Manohar GenAI builds production-grade AI support assistants powered by reasoning-based RAG. Turn your product manuals into an instant, citation-backed knowledge base — no vector database, no chunking.">
+    <meta name="keywords" content="AI support assistant, reasoning-based RAG, PageIndex, document AI, RAG platform, LLM, generative AI, MCP server, chat widget">
+    <meta name="author" content="Manohar GenAI">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Manohar GenAI — AI Support Assistants & Reasoning-Based RAG">
+    <meta property="og:description" content="Turn your product documentation into an intelligent, citation-backed AI assistant. Reasoning-based retrieval — no vector database required.">
+    <meta property="og:url" content="https://manohargenai.in">
+    <meta property="og:site_name" content="Manohar GenAI">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manohar GenAI — AI Support Assistants & Reasoning-Based RAG">
+    <meta name="twitter:description" content="Turn your product documentation into an intelligent, citation-backed AI assistant.">
+
+    <link rel="canonical" href="https://manohargenai.in">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f0f0f'/%3E%3Cpath d='M8 16l6 6 10-10' stroke='%2300c573' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306090c'/%3E%3Cpath d='M8 17l5 5 11-11' stroke='%2300e599' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
 <body>
-    <!-- Noise Overlay -->
-    <div class="noise-overlay"></div>
+    <div class="grain"></div>
 
-    <!-- Navigation -->
+    <!-- ===== NAV ===== -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
-            <a href="#" class="nav-logo">
-                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-                    <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.2"/>
-                    <path d="M8 16l6 6 10-10" stroke="url(#nav-logo-grad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs><linearGradient id="nav-logo-grad" x1="8" y1="12" x2="24" y2="22"><stop stop-color="#3ecf8e"/><stop offset="1" stop-color="#00c573"/></linearGradient></defs>
+            <a href="#top" class="brand">
+                <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.16"/>
+                    <path d="M8 17l5 5 11-11" stroke="url(#bm)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="bm" x1="8" y1="13" x2="24" y2="22"><stop stop-color="#00e599"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs>
                 </svg>
-                <span>HarnessAgent</span>
+                <span>Manohar<span class="brand-sub">GenAI</span></span>
             </a>
-            <div class="nav-links" id="nav-links">
-                <a href="#products">Products</a>
-                <a href="#how-it-works">How it works</a>
-                <a href="#metrics">Results</a>
-                <a href="#about">About</a>
+            <div class="nav-links">
+                <a href="#product">Product</a>
+                <a href="#how">How it works</a>
+                <a href="#channels">Channels</a>
+                <a href="#stack">Tech</a>
+                <a href="#results">Results</a>
             </div>
             <div class="nav-actions">
-                <a href="#contact" class="nav-btn-ghost">Contact</a>
-                <a href="#contact" class="nav-btn-primary">
-                    Start Building
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <a href="login.html" class="nav-signin">Sign in</a>
+                <a href="signup.html" class="btn btn-primary btn-sm">
+                    Get started
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
+                <button class="nav-burger" id="burger" aria-label="Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </button>
             </div>
-            <button class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
         </div>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#channels">Channels</a>
+        <a href="#stack">Tech</a>
+        <a href="#results">Results</a>
+        <a href="login.html">Sign in</a>
+        <a href="signup.html" class="btn btn-primary btn-md btn-full">Get started</a>
+    </div>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-grid-bg"></div>
+    <!-- ===== HERO ===== -->
+    <header class="hero" id="top">
+        <div class="hero-grid"></div>
         <div class="hero-glow"></div>
-        <div class="hero-glow-2"></div>
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-announcement">
-                    <span class="announcement-badge">NEW</span>
-                    <span>Context Graph Engine v2 is now available</span>
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
+            <div class="hero-inner">
+                <a href="https://helpassistant.salesworx.ae" target="_blank" rel="noopener" class="announce">
+                    <span class="announce-tag">LIVE</span>
+                    <span>Now in production at helpassistant.salesworx.ae</span>
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
                 <h1 class="hero-title">
-                    Build AI Agents that<br>
-                    <span class="hero-title-gradient">understand your business</span>
+                    Turn your documentation into<br>
+                    <span class="text-gradient">an AI assistant that reasons</span>
                 </h1>
-                <p class="hero-description">
-                    Harness Agent deploys context-graph-powered AI agents that solve real enterprise 
-                    problems — from natural language SQL to autonomous document processing — 
-                    in minutes, not months.
+                <p class="hero-sub">
+                    Manohar GenAI builds production-grade AI support assistants powered by
+                    <strong>reasoning-based retrieval</strong> — the AI reads your manuals' structure and
+                    reasons about which sections answer a question, just like a human expert.
+                    No vector database. No chunking. Every answer cited to the exact page.
                 </p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn-primary-lg">
-                        Request Early Access
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="hero-cta">
+                    <a href="signup.html" class="btn btn-primary btn-lg">
+                        Start free
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
-                    <a href="#how-it-works" class="btn-secondary-lg">
-                        See how it works
+                    <a href="https://helpassistant.salesworx.ae" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M8 7l5 3-5 3V7z" fill="currentColor"/></svg>
+                        Try the live demo
                     </a>
                 </div>
-                <div class="hero-proof">
-                    <div class="hero-proof-avatars">
-                        <div class="avatar">M</div>
-                        <div class="avatar">S</div>
-                        <div class="avatar">R</div>
-                        <div class="avatar">A</div>
-                    </div>
-                    <p>Trusted by <strong>50+</strong> enterprise teams in private beta</p>
+                <div class="hero-trust">
+                    <span class="live-dot"></span>
+                    <p>Serving real support traffic across <strong>5 product manuals</strong> &amp; <strong>4 channels</strong></p>
                 </div>
             </div>
 
-            <!-- Hero Terminal -->
-            <div class="hero-terminal">
-                <div class="terminal-chrome">
-                    <div class="terminal-dots">
-                        <span></span><span></span><span></span>
-                    </div>
-                    <span class="terminal-title">harness-agent</span>
+            <!-- Terminal -->
+            <div class="terminal" data-reveal>
+                <div class="terminal-bar">
+                    <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+                    <span class="terminal-name">manohar-genai ~ rag-pipeline</span>
                 </div>
-                <div class="terminal-body">
-                    <div class="terminal-line">
-                        <span class="terminal-prompt">$</span>
-                        <span class="terminal-cmd">harness deploy --agent querymind</span>
+                <div class="terminal-body" id="terminalBody">
+                    <div class="tline"><span class="tprompt">$</span><span class="tcmd">ask "How do I add a new customer?"</span></div>
+                    <div class="tline out"><span class="tmut">› tree search across 4 manuals (parallel)…</span></div>
+                    <div class="tline out"><span class="tok">✓</span> matched <span class="thi">Customer Management → Add New Customer</span> (pp.40–41)</div>
+                    <div class="tline out"><span class="tmut">› extracting page text via PyMuPDF…</span></div>
+                    <div class="tline out tcode">To add a new customer in SalesWorx Credit Sales:
+1. Open <span class="k">Customer Management → Add New</span> <span class="s">[[1]]</span>
+2. Fill Name, Code, Address <span class="s">[[1]]</span>
+3. Click <span class="k">Save</span> to create the record <span class="s">[[1]]</span></div>
+                    <div class="tline out"><span class="tok">✓</span> answer generated &amp; cited in <span class="thi">6.2s</span> · 3 LLM calls</div>
+                    <div class="tline"><span class="tprompt">$</span><span class="cur"></span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== LOGO STRIP ===== -->
+    <section class="strip">
+        <div class="container">
+            <p class="strip-label">Built on a model-agnostic, open foundation</p>
+            <div class="strip-row">
+                <span class="strip-item">Google Gemini</span>
+                <span class="strip-item">OpenAI</span>
+                <span class="strip-item">Groq</span>
+                <span class="strip-item">NVIDIA NIM</span>
+                <span class="strip-item">OpenRouter</span>
+                <span class="strip-item">PageIndex</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROBLEM / VALUE ===== -->
+    <section class="section" id="product">
+        <div class="container">
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>The problem</span>
+                <h2 class="s-head">Finding answers in 300-page manuals<br><span class="text-gradient">shouldn't take 20 minutes.</span></h2>
+                <p class="s-sub">Support teams, sales reps, and customers waste hours searching PDFs. We replace that with instant, accurate, citation-backed answers in seconds.</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
-                    <div class="terminal-line output">
-                        <span class="terminal-success">&#10003;</span> Context Graph built from 47 tables, 156 relationships
+                    <h3>Reasoning, not keyword match</h3>
+                    <p>The AI reads a semantic tree of your document and reasons about relevant sections — understanding context vector search misses.</p>
+                </div>
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="terminal-line output">
-                        <span class="terminal-success">&#10003;</span> Business rules indexed (23 constraints mapped)
+                    <h3>Every answer is cited</h3>
+                    <p>Each response links to the exact PDF page. Click a citation to open the source inline — full transparency, zero hallucination guesswork.</p>
+                </div>
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="terminal-line output">
-                        <span class="terminal-success">&#10003;</span> Agent deployed at <span class="terminal-link">api.harness.agent/querymind</span>
+                    <h3>Live in hours, not months</h3>
+                    <p>Upload a PDF, index it once, deploy across web chat, an embeddable widget, MCP, or CLI. New hires get expert answers from day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section section-alt" id="how">
+        <div class="container">
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>How it works</span>
+                <h2 class="s-head">Reasoning-based RAG<br><span class="text-gradient">in three steps.</span></h2>
+                <p class="s-sub">A 300-page manual becomes a compact tree structure — typically 14× smaller than the raw text — that an LLM can reason over in milliseconds.</p>
+            </div>
+            <div class="pipeline">
+                <div class="pstep" data-reveal>
+                    <span class="pstep-num">01</span>
+                    <div class="pstep-body">
+                        <h3>Tree search</h3>
+                        <p>The LLM navigates each document's hierarchical tree — titles, page ranges, and summaries — and <span class="accent-text">reasons about which sections are relevant.</span> Runs in parallel across every assigned manual using a fast, low-cost model.</p>
+                        <div class="ptags"><span>parallel</span><span>no vectors</span><span>no chunking</span></div>
                     </div>
-                    <div class="terminal-line">
-                        <span class="terminal-prompt">$</span>
-                        <span class="terminal-cmd">harness query "top customers by revenue this quarter"</span>
+                </div>
+                <div class="pconn"></div>
+                <div class="pstep" data-reveal>
+                    <span class="pstep-num">02</span>
+                    <div class="pstep-body">
+                        <h3>Context extraction</h3>
+                        <p>Actual page text is extracted from the identified page ranges with PyMuPDF — <span class="accent-text">no LLM call needed.</span> Source markers are attached for precise citation tracking.</p>
+                        <div class="ptags"><span>PyMuPDF</span><span>0 LLM calls</span><span>citation markers</span></div>
                     </div>
-                    <div class="terminal-line output">
-                        <span class="terminal-muted">generating SQL via context graph...</span>
-                    </div>
-                    <div class="terminal-line output code-output">
-<span class="t-keyword">SELECT</span> c.name, <span class="t-func">SUM</span>(o.total) <span class="t-keyword">AS</span> revenue
-<span class="t-keyword">FROM</span> customers c <span class="t-keyword">JOIN</span> orders o <span class="t-keyword">ON</span> c.id = o.customer_id
-<span class="t-keyword">WHERE</span> o.created_at >= <span class="t-func">DATE_TRUNC</span>(<span class="t-string">'quarter'</span>, <span class="t-func">NOW</span>())
-<span class="t-keyword">ORDER BY</span> revenue <span class="t-keyword">DESC LIMIT</span> <span class="t-number">10</span>
-                    </div>
-                    <div class="terminal-line output">
-                        <span class="terminal-success">&#10003;</span> 10 rows returned in <span class="terminal-highlight">47ms</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="terminal-prompt">$</span>
-                        <span class="terminal-cursor"></span>
+                </div>
+                <div class="pconn"></div>
+                <div class="pstep" data-reveal>
+                    <span class="pstep-num">03</span>
+                    <div class="pstep-body">
+                        <h3>Answer generation</h3>
+                        <p>A stronger model synthesizes a detailed, <span class="accent-text">citation-backed answer</span> and streams it token-by-token to the user. Typically 2–5 LLM calls total per query.</p>
+                        <div class="ptags"><span>streaming</span><span>NDJSON / SSE</span><span>cited</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Logos -->
-    <section class="logos-section">
+    <!-- ===== CHANNELS ===== -->
+    <section class="section" id="channels">
         <div class="container">
-            <p class="logos-label">Powering the next generation of enterprise AI</p>
-            <div class="logos-grid">
-                <div class="logo-item">Fortune 500 Retail</div>
-                <div class="logo-item">Global Logistics</div>
-                <div class="logo-item">Enterprise FMCG</div>
-                <div class="logo-item">AI-First Bank</div>
-                <div class="logo-item">Smart Supply Co.</div>
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>One engine, four channels</span>
+                <h2 class="s-head">Deploy the same knowledge base<br><span class="text-gradient">everywhere your users are.</span></h2>
             </div>
-        </div>
-    </section>
-
-    <!-- Products -->
-    <section class="products-section" id="products">
-        <div class="container">
-            <div class="section-eyebrow">
-                <span class="eyebrow-dot"></span>
-                Products
-            </div>
-            <h2 class="section-heading">Five agents.<br><span class="text-gradient">One intelligent platform.</span></h2>
-            <p class="section-subheading">Each agent is powered by our Context Graph engine — a semantic map of your business logic, data relationships, and operational constraints.</p>
-
-            <div class="products-grid">
-                <!-- QueryMind -->
-                <div class="product-card product-card-featured">
-                    <div class="product-card-glow"></div>
-                    <div class="product-header">
-                        <div class="product-icon product-icon-indigo">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7V4h16v3M9 20h6M12 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="feature-grid">
+                <div class="feature-card" data-reveal>
+                    <div class="feature-top">
+                        <div class="feature-ico ico-green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                         </div>
-                        <span class="product-badge">Most Popular</span>
+                        <span class="feature-tag">web-chat</span>
                     </div>
-                    <h3 class="product-title">QueryMind</h3>
-                    <p class="product-subtitle">Text-to-SQL Agent</p>
-                    <p class="product-desc">Ask business questions in plain English. Context Graph understands your schema, joins, and business rules to generate production-ready SQL with 98% accuracy.</p>
-                    <ul class="product-list">
-                        <li>Natural language to complex SQL</li>
-                        <li>Schema-aware context mapping</li>
-                        <li>Multi-database support</li>
-                        <li>Auto-visualization of results</li>
+                    <h3>Web Chat Interface</h3>
+                    <p>A full-featured browser app with real-time streaming, a PDF viewer sidebar, clickable citations, and a thinking accordion that shows the AI's reasoning.</p>
+                    <ul class="feature-list">
+                        <li>Inline PDF viewer with page navigation</li>
+                        <li>Multiple chat sessions &amp; agent selection</li>
+                        <li>Per-query timing &amp; token usage</li>
                     </ul>
-                    <div class="product-metric">
-                        <span class="product-metric-value">98%</span>
-                        <span class="product-metric-label">Query Accuracy</span>
-                    </div>
                 </div>
-
-                <!-- RouteForge -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <div class="product-icon product-icon-green">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="feature-card" data-reveal>
+                    <div class="feature-top">
+                        <div class="feature-ico ico-teal">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
+                        <span class="feature-tag">widget</span>
                     </div>
-                    <h3 class="product-title">RouteForge</h3>
-                    <p class="product-subtitle">Route Optimization Engine</p>
-                    <p class="product-desc">Optimize delivery routes and fleet operations with AI that considers real-time traffic, time windows, vehicle capacity, and priorities.</p>
-                    <ul class="product-list">
-                        <li>Real-time multi-constraint optimization</li>
-                        <li>Dynamic re-routing with live data</li>
-                        <li>Fleet capacity management</li>
-                        <li>30% cost reduction average</li>
+                    <h3>Embeddable Widget</h3>
+                    <p>A ~100–150 KB Lit web component you can drop onto any website — WordPress, ASP.NET, React, or plain HTML — with two HTML tags. Shadow DOM isolated.</p>
+                    <ul class="feature-list">
+                        <li>Zero CSS conflicts (Shadow DOM)</li>
+                        <li>Launcher or inline display modes</li>
+                        <li>Per-agent citation control</li>
                     </ul>
-                    <div class="product-metric">
-                        <span class="product-metric-value">-32%</span>
-                        <span class="product-metric-label">Delivery Costs</span>
-                    </div>
                 </div>
-
-                <!-- ShelfSense -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <div class="product-icon product-icon-amber">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="2"/></svg>
+                <div class="feature-card" data-reveal>
+                    <div class="feature-top">
+                        <div class="feature-ico ico-sky">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 17l6-6-6-6M12 19h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
+                        <span class="feature-tag">mcp-server</span>
                     </div>
-                    <h3 class="product-title">ShelfSense</h3>
-                    <p class="product-subtitle">Planogram Compliance</p>
-                    <p class="product-desc">Verify shelf compliance using computer vision. Detect out-of-stock, misplaced products, and planogram deviations from store images.</p>
-                    <ul class="product-list">
-                        <li>Real-time shelf image analysis</li>
-                        <li>Out-of-stock detection</li>
-                        <li>Visual diff alerts</li>
-                        <li>95%+ detection accuracy</li>
+                    <h3>MCP Server</h3>
+                    <p>Expose your knowledge base to any AI assistant that speaks Model Context Protocol — VS Code Copilot, Cursor, Claude Desktop — via four retrieval tools.</p>
+                    <ul class="feature-list">
+                        <li>Streamable HTTP transport</li>
+                        <li>Context-passing — no double summarization</li>
+                        <li>query, list, search, structure tools</li>
                     </ul>
-                    <div class="product-metric">
-                        <span class="product-metric-value">95%</span>
-                        <span class="product-metric-label">Detection Rate</span>
-                    </div>
                 </div>
-
-                <!-- DocFlow -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <div class="product-icon product-icon-pink">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="feature-card" data-reveal>
+                    <div class="feature-top">
+                        <div class="feature-ico ico-violet">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 9l3 3-3 3M13 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
+                        <span class="feature-tag">cli</span>
                     </div>
-                    <h3 class="product-title">DocFlow</h3>
-                    <p class="product-subtitle">Document Processing</p>
-                    <p class="product-desc">Extract, validate, and process purchase orders using LLM + Vision Encoder. Handle handwritten, scanned, and digital POs with enterprise accuracy.</p>
-                    <ul class="product-list">
-                        <li>Multi-modal LLM + Vision extraction</li>
-                        <li>Handwritten & scanned PO support</li>
-                        <li>Auto-validation against master data</li>
-                        <li>Complete audit trail</li>
+                    <h3>Command-Line Tool</h3>
+                    <p>A standalone CLI for direct querying — no server infrastructure required. Reads indexes from disk and calls any OpenAI-compatible LLM. Perfect for testing.</p>
+                    <ul class="feature-list">
+                        <li>Single-question or interactive mode</li>
+                        <li>No Docker services needed</li>
+                        <li>Great for development &amp; CI</li>
                     </ul>
-                    <div class="product-metric">
-                        <span class="product-metric-value">10x</span>
-                        <span class="product-metric-label">Faster Processing</span>
-                    </div>
-                </div>
-
-                <!-- ResolveAI -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <div class="product-icon product-icon-cyan">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </div>
-                    </div>
-                    <h3 class="product-title">ResolveAI</h3>
-                    <p class="product-subtitle">Support Ticket Agent</p>
-                    <p class="product-desc">Autonomously resolve support tickets by understanding context, querying knowledge bases, and executing resolution workflows. Escalates only when needed.</p>
-                    <ul class="product-list">
-                        <li>Autonomous classification & routing</li>
-                        <li>Knowledge base RAG integration</li>
-                        <li>Multi-step workflow execution</li>
-                        <li>Smart human escalation</li>
-                    </ul>
-                    <div class="product-metric">
-                        <span class="product-metric-value">70%</span>
-                        <span class="product-metric-label">Auto-Resolved</span>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-section" id="how-it-works">
+    <!-- ===== ENTERPRISE FEATURES ===== -->
+    <section class="section section-alt">
         <div class="container">
-            <div class="section-eyebrow">
-                <span class="eyebrow-dot"></span>
-                How It Works
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>Built for teams</span>
+                <h2 class="s-head">Multi-tenant, secure, and<br><span class="text-gradient">model-agnostic by design.</span></h2>
             </div>
-            <h2 class="section-heading">Setup to production<br><span class="text-gradient">in under an hour.</span></h2>
-
-            <div class="steps-container">
-                <div class="step-item">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>Connect your data sources</h3>
-                        <p>Point us to your databases, APIs, and document stores. Our system auto-discovers schemas, relationships, and constraints.</p>
-                        <div class="step-tags">
-                            <span>PostgreSQL</span>
-                            <span>MySQL</span>
-                            <span>BigQuery</span>
-                            <span>MongoDB</span>
-                            <span>S3</span>
-                            <span>REST APIs</span>
-                        </div>
+            <div class="value-grid">
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
+                    <h3>Multi-tenant organizations</h3>
+                    <p>Each organization gets isolated agents, per-org API keys with role-based access, free-credit allowances, and full usage tracking with visual budget bars.</p>
                 </div>
-                <div class="step-divider"></div>
-                <div class="step-item">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>Context Graph builds automatically</h3>
-                        <p>Our engine constructs a semantic graph of your business — mapping entities, rules, relationships, and operational constraints in real-time.</p>
-                        <div class="step-visual">
-                            <div class="graph-mini">
-                                <div class="graph-mini-node n1"></div>
-                                <div class="graph-mini-node n2"></div>
-                                <div class="graph-mini-node n3"></div>
-                                <div class="graph-mini-node n4"></div>
-                                <div class="graph-mini-node n5"></div>
-                                <svg class="graph-mini-lines" viewBox="0 0 200 60">
-                                    <line x1="20" y1="30" x2="60" y2="15" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                                    <line x1="20" y1="30" x2="60" y2="45" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                                    <line x1="60" y1="15" x2="120" y2="30" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                                    <line x1="60" y1="45" x2="120" y2="30" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                                    <line x1="120" y1="30" x2="170" y2="20" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                                    <line x1="120" y1="30" x2="170" y2="45" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-                                </svg>
-                            </div>
-                        </div>
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
+                    <h3>Security &amp; access control</h3>
+                    <p>Cookie + API-key auth, Redis-backed tokens, two-layer agent visibility, and all traffic behind an nginx reverse proxy with Let's Encrypt SSL.</p>
                 </div>
-                <div class="step-divider"></div>
-                <div class="step-item">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>Deploy agents in minutes</h3>
-                        <p>Select agents, configure guardrails, set escalation policies. Your AI workforce starts resolving tasks autonomously — immediately.</p>
-                        <div class="step-code">
-                            <code>
-                                <span class="t-muted"># Deploy all agents at once</span><br>
-                                <span class="t-prompt">$</span> harness deploy --all --env production<br>
-                                <span class="t-success">&#10003;</span> 5 agents deployed successfully
-                            </code>
-                        </div>
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
+                    <h3>Switch LLMs without code</h3>
+                    <p>Gemini, OpenAI, Groq, NVIDIA NIM, OpenRouter, or any OpenAI-compatible endpoint. Use a cheap model for retrieval and a strong one for answers.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Metrics -->
-    <section class="metrics-section" id="metrics">
+    <!-- ===== ARCHITECTURE / STACK ===== -->
+    <section class="section" id="stack">
         <div class="container">
-            <div class="section-eyebrow">
-                <span class="eyebrow-dot"></span>
-                Results
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>Architecture</span>
+                <h2 class="s-head">Production stack,<br><span class="text-gradient">cloud-ready for AWS.</span></h2>
+                <p class="s-sub">Seven containerized services behind a single reverse proxy. S3-compatible object storage migrates cleanly to AWS S3, and the whole stack runs on a modest EC2 instance.</p>
             </div>
-            <h2 class="section-heading">Numbers that<br><span class="text-gradient">speak for themselves.</span></h2>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-value" data-target="98">0<span class="metric-unit">%</span></div>
-                    <div class="metric-bar"><div class="metric-bar-fill" style="--fill: 98%"></div></div>
-                    <p class="metric-label">SQL Query Accuracy</p>
-                    <p class="metric-context">vs. 67% industry average for text-to-SQL</p>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value" data-target="10">0<span class="metric-unit">x</span></div>
-                    <div class="metric-bar"><div class="metric-bar-fill" style="--fill: 85%"></div></div>
-                    <p class="metric-label">Faster Than Manual</p>
-                    <p class="metric-context">Document processing time reduction</p>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value" data-target="70">0<span class="metric-unit">%</span></div>
-                    <div class="metric-bar"><div class="metric-bar-fill" style="--fill: 70%"></div></div>
-                    <p class="metric-label">Tickets Auto-Resolved</p>
-                    <p class="metric-context">Without human intervention</p>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-value" data-target="32">0<span class="metric-unit">%</span></div>
-                    <div class="metric-bar"><div class="metric-bar-fill" style="--fill: 60%"></div></div>
-                    <p class="metric-label">Cost Reduction</p>
-                    <p class="metric-context">Average across route optimization clients</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Architecture -->
-    <section class="arch-section">
-        <div class="container">
-            <div class="arch-card">
-                <div class="arch-header">
-                    <span class="arch-badge">Architecture</span>
-                    <h3>Built for enterprise scale</h3>
+            <div class="arch" data-reveal>
+                <div class="arch-head">
+                    <span class="arch-badge">data flow</span>
+                    <h3>From PDF to cited answer</h3>
                 </div>
                 <div class="arch-layers">
-                    <div class="arch-layer">
-                        <div class="arch-layer-label">Your Data</div>
-                        <div class="arch-layer-items">
-                            <span>PostgreSQL</span>
-                            <span>MongoDB</span>
-                            <span>S3 / Blob</span>
-                            <span>REST APIs</span>
-                            <span>GraphQL</span>
-                        </div>
+                    <div class="alayer">
+                        <div class="alayer-label">Sources</div>
+                        <div class="achips"><span>PDF manuals</span><span>Markdown</span><span>Uploaded docs</span></div>
                     </div>
-                    <div class="arch-connector">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div class="aconn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="arch-layer arch-layer-highlight">
-                        <div class="arch-layer-label">Context Graph Engine</div>
-                        <div class="arch-layer-items">
-                            <span>Schema Discovery</span>
-                            <span>Relationship Mapper</span>
-                            <span>Business Rules</span>
-                            <span>Semantic Index</span>
-                            <span>Constraint Solver</span>
-                        </div>
+                    <div class="alayer hl">
+                        <div class="alayer-label">PageIndex Reasoning Engine</div>
+                        <div class="achips"><span>TOC detection</span><span>Tree construction</span><span>Tree search</span><span>Answer generation</span></div>
                     </div>
-                    <div class="arch-connector">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div class="aconn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="arch-layer">
-                        <div class="arch-layer-label">AI Agents</div>
-                        <div class="arch-layer-items">
-                            <span class="highlight">QueryMind</span>
-                            <span class="highlight">RouteForge</span>
-                            <span class="highlight">ShelfSense</span>
-                            <span class="highlight">DocFlow</span>
-                            <span class="highlight">ResolveAI</span>
-                        </div>
+                    <div class="alayer">
+                        <div class="alayer-label">Delivery</div>
+                        <div class="achips"><span>Web Chat</span><span>Widget</span><span>MCP Server</span><span>CLI</span></div>
                     </div>
                 </div>
-                <div class="arch-footer">
-                    <div class="arch-stat">
-                        <span>99.9%</span> Uptime SLA
+                <div class="arch-foot">
+                    <div><span>7</span> Docker services</div>
+                    <div><span>S3</span>-compatible storage</div>
+                    <div><span>TLS</span> via Let's Encrypt</div>
+                    <div><span>4 GB</span> RAM minimum</div>
+                </div>
+            </div>
+
+            <div class="stack">
+                <span class="stack-chip"><b>FastAPI</b> · backend</span>
+                <span class="stack-chip"><b>Next.js</b> · frontend</span>
+                <span class="stack-chip"><b>Lit</b> · widget</span>
+                <span class="stack-chip"><b>PostgreSQL 16</b></span>
+                <span class="stack-chip"><b>Redis 7</b></span>
+                <span class="stack-chip"><b>MinIO</b> · S3 storage</span>
+                <span class="stack-chip"><b>fastmcp</b> · MCP</span>
+                <span class="stack-chip"><b>PyMuPDF</b></span>
+                <span class="stack-chip"><b>Docker</b> · nginx</span>
+                <span class="stack-chip"><b>Python 3.12</b></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RESULTS / METRICS ===== -->
+    <section class="section section-alt" id="results">
+        <div class="container">
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>Results</span>
+                <h2 class="s-head">Real numbers from<br><span class="text-gradient">a real deployment.</span></h2>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric" data-reveal>
+                    <div class="metric-val" data-target="6"><span class="metric-unit">s</span></div>
+                    <div class="metric-label">Avg. answer time</div>
+                    <div class="metric-ctx">5–10s end-to-end, streamed</div>
+                </div>
+                <div class="metric" data-reveal>
+                    <div class="metric-val" data-target="14"><span class="metric-unit">×</span></div>
+                    <div class="metric-label">Smaller index</div>
+                    <div class="metric-ctx">Tree vs. raw document text</div>
+                </div>
+                <div class="metric" data-reveal>
+                    <div class="metric-val" data-target="5"><span class="metric-unit"></span></div>
+                    <div class="metric-label">Product manuals</div>
+                    <div class="metric-ctx">Indexed &amp; queryable today</div>
+                </div>
+                <div class="metric" data-reveal>
+                    <div class="metric-val" data-prefix="$" data-target="32"><span class="metric-unit">/mo</span></div>
+                    <div class="metric-label">LLM cost</div>
+                    <div class="metric-ctx">At 100 queries/day (text RAG)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LIVE DEMO ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="demo" data-reveal>
+                <div class="demo-content">
+                    <span class="eyebrow"><span class="eyebrow-dot"></span>See it live</span>
+                    <h3>Talk to a production assistant right now</h3>
+                    <p>Our flagship deployment answers SalesWorx product questions across Credit Sales and Van Sales manuals — with citations you can verify. No signup required to try it.</p>
+                    <div class="demo-links">
+                        <a href="https://helpassistant.salesworx.ae" target="_blank" rel="noopener" class="btn btn-primary btn-md">
+                            Open live assistant
+                            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M6 5h5v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://www.salesworx.ae" target="_blank" rel="noopener" class="btn btn-secondary btn-md">See the embedded widget</a>
                     </div>
-                    <div class="arch-stat">
-                        <span>SOC2</span> Compliant
-                    </div>
-                    <div class="arch-stat">
-                        <span>GDPR</span> Ready
-                    </div>
-                    <div class="arch-stat">
-                        <span>&lt;100ms</span> Latency
+                </div>
+                <div class="demo-visual">
+                    <div class="demo-chat">
+                        <span class="chat-q">How do I create a sales order on the iPad?</span>
+                        <p class="chat-a">Open <b>Sales → New Order</b>, select the customer, add items from the product list, then tap <b>Confirm</b> to submit the order for approval.</p>
+                        <span class="chat-cite">
+                            <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M4 2h6l3 3v9H4z" stroke="currentColor" stroke-width="1.3"/></svg>
+                            iPad User Manual · p.55
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About -->
-    <section class="about-section" id="about">
+    <!-- ===== CTA ===== -->
+    <section class="cta-wrap" id="contact">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-content">
-                    <div class="section-eyebrow">
-                        <span class="eyebrow-dot"></span>
-                        About
-                    </div>
-                    <h2 class="section-heading left-align">Built by engineers who've<br><span class="text-gradient">shipped AI at scale.</span></h2>
-                    <p class="about-text">We saw brilliant data teams spending months on problems that should take hours. Our Context Graph technology is the breakthrough — it gives AI agents the same contextual understanding of your business that your best employees have.</p>
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <div class="about-feature-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </div>
-                            <div>
-                                <strong>Enterprise Security</strong>
-                                <p>SOC2, GDPR, HIPAA. Data never leaves your infrastructure.</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </div>
-                            <div>
-                                <strong>Production Ready</strong>
-                                <p>99.9% uptime. Battle-tested with Fortune 500 workloads.</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </div>
-                            <div>
-                                <strong>Human-in-the-Loop</strong>
-                                <p>Agents escalate gracefully. You stay in control, always.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-visual">
-                    <div class="about-card-stack">
-                        <div class="about-stat-card">
-                            <div class="about-stat-value">$2.4M</div>
-                            <div class="about-stat-label">Avg. annual savings per client</div>
-                        </div>
-                        <div class="about-stat-card">
-                            <div class="about-stat-value">47ms</div>
-                            <div class="about-stat-label">Average query response time</div>
-                        </div>
-                        <div class="about-stat-card">
-                            <div class="about-stat-value">500K+</div>
-                            <div class="about-stat-label">Documents processed monthly</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <div class="cta-card">
+            <div class="cta">
                 <div class="cta-glow"></div>
-                <div class="cta-content">
-                    <h2>Ready to deploy<br><span class="text-gradient">intelligent agents?</span></h2>
-                    <p>Join leading enterprises transforming operations with context-aware AI. Get started in minutes.</p>
-                    <form class="cta-form" id="cta-form">
-                        <div class="form-group">
-                            <input type="email" placeholder="Enter your work email" required>
-                            <button type="submit" class="btn-primary-lg">
-                                Get Early Access
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="cta-inner">
+                    <h2>Bring your documentation<br><span class="text-gradient">to life with AI.</span></h2>
+                    <p>Start free, or talk to us about a custom AI assistant for your product. Setup takes minutes.</p>
+                    <form class="cta-form" id="ctaForm" novalidate>
+                        <div class="cta-row">
+                            <input type="email" id="ctaEmail" placeholder="Enter your work email" autocomplete="email" required>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Get early access
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             </button>
                         </div>
-                        <p class="form-note">Free for teams up to 5. No credit card required.</p>
+                        <p class="form-msg" id="ctaMsg"></p>
+                        <p class="cta-note">Free for small teams · No credit card required · Built for AWS</p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="nav-logo">
-                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-                            <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-opacity="0.2"/>
-                            <path d="M8 16l6 6 10-10" stroke="url(#footer-grad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                            <defs><linearGradient id="footer-grad" x1="8" y1="12" x2="24" y2="22"><stop stop-color="#3ecf8e"/><stop offset="1" stop-color="#00c573"/></linearGradient></defs>
+                    <a href="#top" class="brand">
+                        <svg class="brand-mark" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.16"/>
+                            <path d="M8 17l5 5 11-11" stroke="url(#fm)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs><linearGradient id="fm" x1="8" y1="13" x2="24" y2="22"><stop stop-color="#00e599"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs>
                         </svg>
-                        <span>HarnessAgent</span>
+                        <span>Manohar<span class="brand-sub">GenAI</span></span>
                     </a>
-                    <p class="footer-desc">Context-aware AI agents that understand your business.</p>
+                    <p class="footer-desc">Production-grade AI support assistants powered by reasoning-based retrieval. Turn documentation into instant, cited answers.</p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/manoharpalanisamy" target="_blank" rel="noopener" aria-label="GitHub">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 00-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0020 4.8 5.1 5.1 0 0019.9 1S18.7.6 16 2.5a13.4 13.4 0 00-7 0C6.3.6 5.1 1 5.1 1A5.1 5.1 0 005 4.8a5.4 5.4 0 00-1.5 3.8c0 5.4 3.3 6.6 6.4 7A3.4 3.4 0 009 18.1V22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Product</h4>
-                    <a href="#products">QueryMind</a>
-                    <a href="#products">RouteForge</a>
-                    <a href="#products">ShelfSense</a>
-                    <a href="#products">DocFlow</a>
-                    <a href="#products">ResolveAI</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <a href="#about">About</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Press</a>
+                    <a href="#product">Overview</a>
+                    <a href="#how">How it works</a>
+                    <a href="#channels">Channels</a>
+                    <a href="#stack">Architecture</a>
                 </div>
                 <div class="footer-col">
                     <h4>Resources</h4>
-                    <a href="#">Documentation</a>
-                    <a href="#">API Reference</a>
-                    <a href="#">Status</a>
-                    <a href="#">Security</a>
+                    <a href="https://helpassistant.salesworx.ae" target="_blank" rel="noopener">Live demo</a>
+                    <a href="https://github.com/manoharpalanisamy/swx-support" target="_blank" rel="noopener">Documentation</a>
+                    <a href="https://github.com/VectifyAI/PageIndex" target="_blank" rel="noopener">PageIndex</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Account</h4>
+                    <a href="login.html">Sign in</a>
+                    <a href="signup.html">Create account</a>
+                    <a href="#results">Results</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Harness Agent Inc. All rights reserved.</p>
-                <div class="footer-links">
+                <p>&copy; 2026 Manohar GenAI. All rights reserved.</p>
+                <div class="footer-legal">
                     <a href="#">Privacy</a>
                     <a href="#">Terms</a>
-                    <a href="#">Cookies</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
         </div>
