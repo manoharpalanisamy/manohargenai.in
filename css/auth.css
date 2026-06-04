@@ -57,6 +57,12 @@
 .auth-head p a:hover { text-decoration: underline; }
 
 /* ── Google / OAuth button ── */
+.gsi-btn {
+    display: flex;
+    justify-content: center;
+    min-height: 44px;
+}
+.gsi-btn > div { width: 100%; }
 .oauth-btn {
     display: flex;
     align-items: center;

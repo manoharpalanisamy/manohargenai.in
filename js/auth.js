@@ -6,28 +6,32 @@
     'use strict';
 
     /* ============================================================
-       GOOGLE SIGN-IN (Google Identity Services — client-side)
+       GOOGLE SIGN-IN (Google Identity Services — ID token flow)
        ------------------------------------------------------------
-       Uses GIS token flow, which signs users in entirely in the
-       browser using only the PUBLIC client_id. No backend and no
-       client_secret are required (the secret must never live in
-       front-end code). The GIS library is loaded via:
+       Uses the official "Sign in with Google" button, which signs
+       users in entirely in the browser and returns a signed JWT
+       credential (the user's identity). It needs ONLY the public
+       client_id — no backend, no client_secret, and NO redirect URI.
+
+       Requires the GIS library (loaded on the page via):
          <script src="https://accounts.google.com/gsi/client" async></script>
 
        Google Cloud Console (project divine-voice-498406-m8):
-         • Authorised JavaScript origins:  https://manohargenai.in
-       NOTE: Google sign-in only works on an authorised origin
-       (https://manohargenai.in), not file:// or localhost unless
-       you also add that origin in the console.
+         • Authorised JavaScript origins MUST include the exact
+           origin you load the site from, e.g. https://manohargenai.in
+           (add https://www.manohargenai.in too if you use www).
+         • The OAuth consent screen must be configured; while it is in
+           "Testing", only added test users can sign in — add your
+           email as a test user, or publish the app.
+       Google sign-in will NOT work from file:// or localhost unless
+       that origin is also added in the console.
        ============================================================ */
     const GOOGLE_OAUTH = {
-        CLIENT_ID: '113629175249-pdc6b48cpes5k6hn0dsa540gosk7ilsd.apps.googleusercontent.com',
-        SCOPE: 'openid email profile',
-        USERINFO: 'https://www.googleapis.com/oauth2/v3/userinfo'
+        CLIENT_ID: '113629175249-pdc6b48cpes5k6hn0dsa540gosk7ilsd.apps.googleusercontent.com'
     };
 
-    let _tokenClient = null;
     let _intent = 'login';
+    let _gsiReady = false;
 
     document.addEventListener('DOMContentLoaded', () => {
         injectSpinner();
@@ -37,88 +41,114 @@
         initSignup();
     });
 
-    /* ── Wire up the Google button ── */
+    /* ── Wire up Google sign-in ── */
     function initGoogleAuth() {
-        const btn = document.getElementById('googleBtn');
-        if (!btn) return;
+        const host = document.getElementById('gsiButton');
+        if (!host) return;
         _intent = document.getElementById('signupForm') ? 'signup' : 'login';
-        btn.addEventListener('click', onGoogleClick);
-    }
 
-    /* Lazily create the GIS token client (the library loads async). */
-    function ensureTokenClient() {
-        if (_tokenClient) return _tokenClient;
-        if (!(window.google && google.accounts && google.accounts.oauth2)) return null;
-        _tokenClient = google.accounts.oauth2.initTokenClient({
-            client_id: GOOGLE_OAUTH.CLIENT_ID,
-            scope: GOOGLE_OAUTH.SCOPE,
-            callback: handleTokenResponse
-        });
-        return _tokenClient;
-    }
-
-    function onGoogleClick() {
-        const msg = getMsgEl();
-        const client = ensureTokenClient();
-        if (!client) {
-            showMsg(msg, 'err',
-                'Google sign-in is still loading (or this page isn\'t served from an authorised domain). Please retry on https://manohargenai.in.');
-            return;
-        }
-        hideMsg(msg);
-        setGoogleLoading(true);
-        try {
-            client.requestAccessToken();
-        } catch (e) {
-            setGoogleLoading(false);
-            showMsg(msg, 'err', 'Could not open Google sign-in. Please try again.');
-        }
-    }
-
-    /* GIS calls this with an access token (or an error). */
-    function handleTokenResponse(resp) {
-        const msg = getMsgEl();
-        if (!resp || resp.error || !resp.access_token) {
-            setGoogleLoading(false);
-            showMsg(msg, 'err', 'Google sign-in was cancelled or failed. Please try again.');
-            return;
-        }
-        fetch(GOOGLE_OAUTH.USERINFO, {
-            headers: { Authorization: 'Bearer ' + resp.access_token }
-        })
-        .then(r => r.json())
-        .then(profile => {
-            try {
-                localStorage.setItem('mg_user', JSON.stringify({
-                    email: profile.email || '',
-                    name: profile.name || '',
-                    picture: profile.picture || '',
-                    ts: Date.now()
-                }));
-            } catch (_) {}
-            const who = profile.name || profile.email || 'your Google account';
-            showMsg(msg, 'ok', 'Signed in as ' + who + '. Redirecting…');
-            setTimeout(() => { window.location.href = 'index.html'; }, 1100);
-        })
-        .catch(() => {
-            setGoogleLoading(false);
-            showMsg(msg, 'err', 'Signed in, but your profile couldn\'t be loaded. Please try again.');
-        });
-    }
-
-    function setGoogleLoading(on) {
-        const btn = document.getElementById('googleBtn');
-        if (!btn) return;
-        if (on) {
-            btn.dataset.html = btn.dataset.html || btn.innerHTML;
-            btn.disabled = true;
-            btn.style.opacity = '0.7';
-            btn.innerHTML = '<span class="spin"></span> Connecting to Google…';
+        // The GIS library loads async. Set the official load hook AND poll,
+        // so we initialise whichever order things load in.
+        window.onGoogleLibraryLoad = setupGoogle;
+        if (gisAvailable()) {
+            setupGoogle();
         } else {
-            btn.disabled = false;
-            btn.style.opacity = '1';
-            if (btn.dataset.html) btn.innerHTML = btn.dataset.html;
+            let tries = 0;
+            const timer = setInterval(() => {
+                if (gisAvailable()) { clearInterval(timer); setupGoogle(); }
+                else if (++tries > 50) { clearInterval(timer); showFallback(); }
+            }, 100);
         }
+    }
+
+    function gisAvailable() {
+        return !!(window.google && google.accounts && google.accounts.id);
+    }
+
+    function setupGoogle() {
+        if (_gsiReady || !gisAvailable()) return;
+        _gsiReady = true;
+        try {
+            google.accounts.id.initialize({
+                client_id: GOOGLE_OAUTH.CLIENT_ID,
+                callback: handleCredential,
+                ux_mode: 'popup',
+                auto_select: false,
+                cancel_on_tap_outside: true,
+                itp_support: true
+            });
+
+            const host = document.getElementById('gsiButton');
+            const width = Math.min(Math.max((host && host.offsetWidth) || 320, 240), 400);
+            google.accounts.id.renderButton(host, {
+                type: 'standard',
+                theme: 'filled_black',
+                size: 'large',
+                text: _intent === 'signup' ? 'signup_with' : 'signin_with',
+                shape: 'pill',
+                logo_alignment: 'center',
+                width: width
+            });
+        } catch (e) {
+            showFallback();
+        }
+    }
+
+    /* GIS returns a signed JWT credential (the user's identity). */
+    function handleCredential(resp) {
+        const msg = getMsgEl();
+        if (!resp || !resp.credential) {
+            showMsg(msg, 'err', 'Google sign-in was cancelled. Please try again.');
+            return;
+        }
+        const profile = decodeJwt(resp.credential);
+        if (!profile) {
+            showMsg(msg, 'err', 'Could not read the Google response. Please try again.');
+            return;
+        }
+        try {
+            localStorage.setItem('mg_user', JSON.stringify({
+                email: profile.email || '',
+                name: profile.name || '',
+                picture: profile.picture || '',
+                ts: Date.now()
+            }));
+        } catch (_) {}
+        const who = profile.name || profile.email || 'your Google account';
+        showMsg(msg, 'ok', 'Signed in as ' + who + '. Redirecting…');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1100);
+    }
+
+    /* Decode a JWT payload (no verification — identity display only).
+       For production, verify the token signature on a backend. */
+    function decodeJwt(token) {
+        try {
+            const part = token.split('.')[1];
+            const json = decodeURIComponent(
+                atob(part.replace(/-/g, '+').replace(/_/g, '/'))
+                    .split('')
+                    .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                    .join('')
+            );
+            return JSON.parse(json);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    /* If GIS can't load (offline, blocked, or unauthorised origin),
+       reveal the styled fallback button with a helpful message. */
+    function showFallback() {
+        const host = document.getElementById('gsiButton');
+        const btn = document.getElementById('googleBtn');
+        if (host) host.style.display = 'none';
+        if (!btn) return;
+        btn.hidden = false;
+        btn.addEventListener('click', () => {
+            showMsg(getMsgEl(), 'err',
+                'Google sign-in must run on the authorised domain (https://manohargenai.in). ' +
+                'If you are already there, check that the origin is listed in the Google Console.');
+        });
     }
 
     /* ── Password show/hide ── */
