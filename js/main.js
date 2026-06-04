@@ -4,6 +4,26 @@
 (() => {
     'use strict';
 
+    /* ============================================================
+       EARLY-ACCESS / WAITLIST EMAIL SETTINGS
+       ------------------------------------------------------------
+       The "Get early access" form below works in two modes:
+
+       1. ENDPOINT mode (recommended once you have it):
+          Set ENDPOINT to a form/back-end URL that accepts a POST
+          (e.g. your FastAPI route, Formspree, Web3Forms, etc.).
+          The email is sent in the background via fetch().
+
+       2. MAILTO fallback (works right now, no backend needed):
+          If ENDPOINT is empty, the form opens the visitor's mail
+          client with a pre-filled message to CONTACT_EMAIL.
+       ============================================================ */
+    const WAITLIST = {
+        CONTACT_EMAIL: 'support@manohargenai.in',
+        ENDPOINT: '',                 // e.g. 'https://api.manohargenai.in/waitlist' or a Formspree URL
+        SUBJECT: 'Early access request — Manohar GenAI'
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
         initNav();
         initMobileMenu();
@@ -12,6 +32,7 @@
         initMetrics();
         initTerminal();
         initCtaForm();
+        handleOAuthReturn();   // gracefully handle Google redirect back to the homepage
     });
 
     /* ── Sticky nav shadow on scroll ── */
@@ -173,22 +194,79 @@
             btn.style.opacity = '0.75';
             btn.innerHTML = '<span class="spin"></span> Submitting…';
 
-            // Simulated submit. Replace with real endpoint / API call later.
-            setTimeout(() => {
-                btn.innerHTML = '✓ You\'re on the list!';
+            if (WAITLIST.ENDPOINT) {
+                // ── Mode 1: POST to a real endpoint ──
+                fetch(WAITLIST.ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: value, source: 'landing-early-access' })
+                })
+                .then(r => { if (!r.ok) throw new Error('bad status'); return r; })
+                .then(() => onSuccess(value))
+                .catch(() => onError());
+            } else {
+                // ── Mode 2: mailto fallback (no backend required) ──
+                const body =
+                    'Hi Manohar GenAI team,%0D%0A%0D%0A' +
+                    'I\'d like early access to the AI support assistant platform.%0D%0A%0D%0A' +
+                    'My email: ' + encodeURIComponent(value) + '%0D%0A';
+                const mailto = 'mailto:' + WAITLIST.CONTACT_EMAIL +
+                    '?subject=' + encodeURIComponent(WAITLIST.SUBJECT) +
+                    '&body=' + body;
+                window.location.href = mailto;
+                // Give the mail client a moment to open, then confirm
+                setTimeout(() => onSuccess(value), 600);
+            }
+
+            function onSuccess(v) {
+                btn.innerHTML = '✓ Request sent!';
                 btn.style.opacity = '1';
                 msg.style.color = 'var(--accent)';
-                msg.textContent = 'Thanks — we\'ll reach out to ' + value + ' shortly.';
+                msg.textContent = 'Thanks — we\'ll reach out to ' + v + ' shortly.';
                 email.value = '';
-                // Persist locally so the demo feels real across reloads
-                try { localStorage.setItem('mg_waitlist', value); } catch (_) {}
-
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.innerHTML = original;
-                }, 3200);
-            }, 1200);
+                try { localStorage.setItem('mg_waitlist', v); } catch (_) {}
+                setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 3200);
+            }
+            function onError() {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.innerHTML = original;
+                msg.style.color = '#f87171';
+                msg.textContent = 'Something went wrong. Please email ' + WAITLIST.CONTACT_EMAIL + ' directly.';
+            }
         });
+    }
+
+    /* ── Handle Google OAuth redirect back to the homepage ── */
+    function handleOAuthReturn() {
+        const q = new URLSearchParams(window.location.search);
+        if (!q.has('code') && !q.has('error')) return;
+
+        // Clean the query string so a refresh doesn't re-trigger
+        const clean = () => window.history.replaceState({}, document.title, window.location.pathname);
+
+        if (q.has('error')) {
+            toast('Google sign-in was cancelled. Please try again.', false);
+        } else {
+            // A backend must now exchange the `code` for tokens securely.
+            toast('Google authorization received. Completing sign-in requires the backend.', true);
+        }
+        clean();
+    }
+
+    function toast(text, ok) {
+        const el = document.createElement('div');
+        el.textContent = text;
+        el.style.cssText =
+            'position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:9999;' +
+            'max-width:90vw;padding:13px 18px;border-radius:12px;font-size:.85rem;font-weight:500;' +
+            'backdrop-filter:blur(10px);border:1px solid ' +
+            (ok ? 'rgba(0,229,153,.3)' : 'rgba(248,113,113,.3)') + ';' +
+            'background:' + (ok ? 'rgba(0,229,153,.12)' : 'rgba(248,113,113,.12)') + ';' +
+            'color:' + (ok ? '#3ef0b0' : '#f87171') + ';box-shadow:0 8px 30px rgba(0,0,0,.5)';
+        document.body.appendChild(el);
+        setTimeout(() => { el.style.transition = 'opacity .4s'; el.style.opacity = '0'; }, 5000);
+        setTimeout(() => el.remove(), 5500);
     }
 
     function isEmail(v) {

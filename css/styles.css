@@ -831,6 +831,15 @@ img, svg { display: block; max-width: 100%; }
 }
 .footer-brand .brand { margin-bottom: 14px; }
 .footer-desc { font-size: 0.86rem; color: var(--text-muted); max-width: 280px; line-height: 1.6; margin-bottom: 18px; }
+.footer-email {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 18px;
+    transition: color 0.2s;
+}
+.footer-email:hover { color: var(--accent-bright); text-decoration: underline; }
 .footer-socials { display: flex; gap: 10px; }
 .footer-socials a {
     width: 34px; height: 34px;

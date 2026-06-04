@@ -6,22 +6,25 @@
     'use strict';
 
     /* ============================================================
-       GOOGLE OAUTH CONFIG  — EDIT THIS BLOCK WHEN READY
+       GOOGLE OAUTH CONFIG
        ------------------------------------------------------------
-       1. Go to https://console.cloud.google.com/apis/credentials
-       2. Create an "OAuth 2.0 Client ID" (type: Web application)
-       3. Under "Authorised JavaScript origins" add:  https://manohargenai.in
-       4. Under "Authorised redirect URIs" add:        https://manohargenai.in/login.html
-          (or a dedicated /auth/callback handled by your backend)
-       5. Copy the Client ID below and set CONFIGURED = true
+       Only the PUBLIC client_id lives here — this is safe to ship
+       to the browser. The client_secret must NEVER appear in
+       front-end code; it is used only on a backend server to
+       exchange the authorization `code` for tokens.
+
+       Registered in Google Cloud Console (project divine-voice-498406-m8):
+         • Authorised JavaScript origins:  https://manohargenai.in
+         • Authorised redirect URIs:        https://manohargenai.in
+       To complete real sign-in you still need a backend endpoint
+       that performs the secure code→token exchange.
        ============================================================ */
     const GOOGLE_OAUTH = {
-        CONFIGURED: false,                       // ← set to true once CLIENT_ID is filled in
-        CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
-        REDIRECT_URI: window.location.origin + '/login.html',
+        CONFIGURED: true,
+        CLIENT_ID: '113629175249-pdc6b48cpes5k6hn0dsa540gosk7ilsd.apps.googleusercontent.com',
+        REDIRECT_URI: 'https://manohargenai.in',  // must exactly match a registered redirect URI
         SCOPE: 'openid email profile',
-        RESPONSE_TYPE: 'code',                   // 'code' (needs backend) — use 'token' for pure client-side
-        // Authorization endpoint (standard Google OAuth 2.0)
+        RESPONSE_TYPE: 'code',                    // 'code' (needs backend) — use 'token' for pure client-side
         AUTH_ENDPOINT: 'https://accounts.google.com/o/oauth2/v2/auth'
     };
 
