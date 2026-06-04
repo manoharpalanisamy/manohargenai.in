@@ -1,286 +1,283 @@
-// ============================================
-// HARNESS AGENT — Premium Interactions
-// Vercel/Supabase-quality animations
-// ============================================
-
+/* ============================================================
+   MANOHAR GenAI — Landing page interactions
+   ============================================================ */
 (() => {
     'use strict';
 
-    // ─── Init ───
+    /* ============================================================
+       EARLY-ACCESS / WAITLIST EMAIL SETTINGS
+       ------------------------------------------------------------
+       The "Get early access" form below works in two modes:
+
+       1. ENDPOINT mode (recommended once you have it):
+          Set ENDPOINT to a form/back-end URL that accepts a POST
+          (e.g. your FastAPI route, Formspree, Web3Forms, etc.).
+          The email is sent in the background via fetch().
+
+       2. MAILTO fallback (works right now, no backend needed):
+          If ENDPOINT is empty, the form opens the visitor's mail
+          client with a pre-filled message to CONTACT_EMAIL.
+       ============================================================ */
+    const WAITLIST = {
+        CONTACT_EMAIL: 'support@manohargenai.in',
+        ENDPOINT: '',                 // e.g. 'https://api.manohargenai.in/waitlist' or a Formspree URL
+        SUBJECT: 'Early access request — Manohar GenAI'
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
         initNav();
-        initScrollAnimations();
-        initMetricCounters();
-        initTerminalTyping();
-        initFormHandler();
-        initSmoothScroll();
         initMobileMenu();
+        initSmoothScroll();
+        initReveal();
+        initMetrics();
+        initTerminal();
+        initCtaForm();
+        handleOAuthReturn();   // gracefully handle Google redirect back to the homepage
     });
 
-    // ═══════════════════════════════════════════
-    // NAVIGATION
-    // ═══════════════════════════════════════════
+    /* ── Sticky nav shadow on scroll ── */
     function initNav() {
         const nav = document.getElementById('nav');
         if (!nav) return;
-
         let ticking = false;
-
-        window.addEventListener('scroll', () => {
+        const onScroll = () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    if (window.scrollY > 20) {
-                        nav.classList.add('scrolled');
-                    } else {
-                        nav.classList.remove('scrolled');
-                    }
+                    nav.classList.toggle('scrolled', window.scrollY > 20);
                     ticking = false;
                 });
                 ticking = true;
             }
-        });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
     }
 
-    // ═══════════════════════════════════════════
-    // MOBILE MENU
-    // ═══════════════════════════════════════════
+    /* ── Mobile menu ── */
     function initMobileMenu() {
-        const btn = document.getElementById('nav-mobile-btn');
-        const links = document.getElementById('nav-links');
-        if (!btn || !links) return;
+        const burger = document.getElementById('burger');
+        const menu = document.getElementById('mobileMenu');
+        if (!burger || !menu) return;
 
-        let open = false;
-
-        btn.addEventListener('click', () => {
-            open = !open;
-            if (open) {
-                links.style.display = 'flex';
-                links.style.position = 'fixed';
-                links.style.top = 'var(--nav-h)';
-                links.style.left = '0';
-                links.style.right = '0';
-                links.style.flexDirection = 'column';
-                links.style.padding = '24px';
-                links.style.gap = '16px';
-                links.style.background = 'rgba(5,5,5,0.98)';
-                links.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
-                links.style.zIndex = '999';
-                links.style.backdropFilter = 'blur(20px)';
-            } else {
-                links.removeAttribute('style');
-            }
-        });
-
-        // Close on link click
-        links.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                open = false;
-                links.removeAttribute('style');
-            });
-        });
-    }
-
-    // ═══════════════════════════════════════════
-    // SCROLL ANIMATIONS (Intersection Observer)
-    // ═══════════════════════════════════════════
-    function initScrollAnimations() {
-        const targets = document.querySelectorAll(
-            '.product-card, .step-item, .metric-card, .about-feature, ' +
-            '.about-stat-card, .arch-card, .cta-card, .hero-terminal, ' +
-            '.section-eyebrow, .section-heading, .section-subheading'
+        burger.addEventListener('click', () => menu.classList.toggle('open'));
+        menu.querySelectorAll('a').forEach(a =>
+            a.addEventListener('click', () => menu.classList.remove('open'))
         );
-
-        if (!targets.length) return;
-
-        // Set initial state
-        targets.forEach((el, i) => {
-            el.setAttribute('data-animate', '');
-            el.style.transitionDelay = `${Math.min(i % 6, 4) * 80}ms`;
-        });
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '0px 0px -60px 0px'
-            }
-        );
-
-        targets.forEach(el => observer.observe(el));
-    }
-
-    // ═══════════════════════════════════════════
-    // METRIC COUNTERS
-    // ═══════════════════════════════════════════
-    function initMetricCounters() {
-        const metrics = document.querySelectorAll('.metric-value[data-target]');
-        if (!metrics.length) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounter(entry.target);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.5 }
-        );
-
-        metrics.forEach(el => observer.observe(el));
-    }
-
-    function animateCounter(el) {
-        const target = parseInt(el.dataset.target, 10);
-        const unit = el.querySelector('.metric-unit');
-        const unitText = unit ? unit.textContent : '';
-        const duration = 2000;
-        const start = performance.now();
-
-        function tick(now) {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out expo
-            const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-            const current = Math.round(eased * target);
-
-            el.textContent = current;
-            if (unit) {
-                const span = document.createElement('span');
-                span.className = 'metric-unit';
-                span.textContent = unitText;
-                el.appendChild(span);
-            }
-
-            if (progress < 1) {
-                requestAnimationFrame(tick);
-            }
-        }
-
-        requestAnimationFrame(tick);
-    }
-
-    // ═══════════════════════════════════════════
-    // TERMINAL TYPING EFFECT
-    // ═══════════════════════════════════════════
-    function initTerminalTyping() {
-        const terminal = document.querySelector('.hero-terminal');
-        if (!terminal) return;
-
-        const lines = terminal.querySelectorAll('.terminal-line');
-
-        // Hide all lines initially
-        lines.forEach(line => {
-            line.style.opacity = '0';
-            line.style.transform = 'translateY(4px)';
-        });
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        revealTerminalLines(lines);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.3 }
-        );
-
-        observer.observe(terminal);
-    }
-
-    function revealTerminalLines(lines) {
-        lines.forEach((line, i) => {
-            setTimeout(() => {
-                line.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                line.style.opacity = '1';
-                line.style.transform = 'translateY(0)';
-            }, i * 180);
+        // Close when resizing up to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) menu.classList.remove('open');
         });
     }
 
-    // ═══════════════════════════════════════════
-    // FORM HANDLER
-    // ═══════════════════════════════════════════
-    function initFormHandler() {
-        const form = document.getElementById('cta-form');
-        if (!form) return;
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const btn = form.querySelector('button[type="submit"]');
-            const input = form.querySelector('input[type="email"]');
-            const originalHTML = btn.innerHTML;
-
-            // Loading state
-            btn.innerHTML = `
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="spinner">
-                    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="28" stroke-dashoffset="8" stroke-linecap="round"/>
-                </svg>
-                Submitting...
-            `;
-            btn.disabled = true;
-            btn.style.opacity = '0.7';
-
-            // Simulate API call
-            setTimeout(() => {
-                btn.innerHTML = `
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    You're on the list!
-                `;
-                btn.style.opacity = '1';
-                input.value = '';
-
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                    btn.disabled = false;
-                }, 3000);
-            }, 1500);
-        });
-    }
-
-    // ═══════════════════════════════════════════
-    // SMOOTH SCROLL
-    // ═══════════════════════════════════════════
+    /* ── Smooth scroll for in-page anchors ── */
     function initSmoothScroll() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
-
-                e.preventDefault();
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                if (href === '#' || href.length < 2) return;
                 const target = document.querySelector(href);
                 if (!target) return;
-
-                const offset = 80;
-                const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-
-                window.scrollTo({
-                    top,
-                    behavior: 'smooth'
-                });
+                e.preventDefault();
+                const top = target.getBoundingClientRect().top + window.pageYOffset - 76;
+                window.scrollTo({ top, behavior: 'smooth' });
             });
         });
     }
 
-})();
+    /* ── Scroll reveal ── */
+    function initReveal() {
+        const els = document.querySelectorAll('[data-reveal]');
+        if (!els.length) return;
 
-// ─── Spinner CSS injection ───
-const spinnerStyle = document.createElement('style');
-spinnerStyle.textContent = `
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner { animation: spin 0.8s linear infinite; }
-`;
-document.head.appendChild(spinnerStyle);
+        if (!('IntersectionObserver' in window)) {
+            els.forEach(el => el.classList.add('in'));
+            return;
+        }
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    const delay = (i % 4) * 70;
+                    setTimeout(() => entry.target.classList.add('in'), delay);
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+        els.forEach(el => io.observe(el));
+    }
+
+    /* ── Animated metric counters ── */
+    function initMetrics() {
+        const metrics = document.querySelectorAll('.metric-val[data-target]');
+        if (!metrics.length) return;
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp(entry.target);
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        metrics.forEach(m => io.observe(m));
+    }
+
+    function countUp(el) {
+        const target = parseInt(el.dataset.target, 10) || 0;
+        const prefix = el.dataset.prefix || '';
+        const unitEl = el.querySelector('.metric-unit');
+        const unitHTML = unitEl ? unitEl.outerHTML : '';
+        const duration = 1600;
+        const start = performance.now();
+
+        function frame(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+            const val = Math.round(eased * target);
+            el.innerHTML = prefix + val + unitHTML;
+            if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+    }
+
+    /* ── Terminal line reveal ── */
+    function initTerminal() {
+        const body = document.getElementById('terminalBody');
+        if (!body) return;
+        const lines = Array.from(body.querySelectorAll('.tline'));
+        lines.forEach(l => {
+            l.style.opacity = '0';
+            l.style.transform = 'translateY(4px)';
+        });
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    lines.forEach((l, i) => {
+                        setTimeout(() => {
+                            l.style.transition = 'opacity .4s ease, transform .4s ease';
+                            l.style.opacity = '1';
+                            l.style.transform = 'translateY(0)';
+                        }, i * 160);
+                    });
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        io.observe(body);
+    }
+
+    /* ── CTA email capture ── */
+    function initCtaForm() {
+        const form = document.getElementById('ctaForm');
+        if (!form) return;
+        const email = document.getElementById('ctaEmail');
+        const msg = document.getElementById('ctaMsg');
+        const btn = form.querySelector('button[type="submit"]');
+        const original = btn.innerHTML;
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const value = (email.value || '').trim();
+
+            if (!isEmail(value)) {
+                msg.style.color = '#f87171';
+                msg.textContent = 'Please enter a valid email address.';
+                email.focus();
+                return;
+            }
+
+            msg.style.color = '';
+            msg.textContent = '';
+            btn.disabled = true;
+            btn.style.opacity = '0.75';
+            btn.innerHTML = '<span class="spin"></span> Submitting…';
+
+            if (WAITLIST.ENDPOINT) {
+                // ── Mode 1: POST to a real endpoint ──
+                fetch(WAITLIST.ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: value, source: 'landing-early-access' })
+                })
+                .then(r => { if (!r.ok) throw new Error('bad status'); return r; })
+                .then(() => onSuccess(value))
+                .catch(() => onError());
+            } else {
+                // ── Mode 2: mailto fallback (no backend required) ──
+                const body =
+                    'Hi Manohar GenAI team,%0D%0A%0D%0A' +
+                    'I\'d like early access to the AI support assistant platform.%0D%0A%0D%0A' +
+                    'My email: ' + encodeURIComponent(value) + '%0D%0A';
+                const mailto = 'mailto:' + WAITLIST.CONTACT_EMAIL +
+                    '?subject=' + encodeURIComponent(WAITLIST.SUBJECT) +
+                    '&body=' + body;
+                window.location.href = mailto;
+                // Give the mail client a moment to open, then confirm
+                setTimeout(() => onSuccess(value), 600);
+            }
+
+            function onSuccess(v) {
+                btn.innerHTML = '✓ Request sent!';
+                btn.style.opacity = '1';
+                msg.style.color = 'var(--accent)';
+                msg.textContent = 'Thanks — we\'ll reach out to ' + v + ' shortly.';
+                email.value = '';
+                try { localStorage.setItem('mg_waitlist', v); } catch (_) {}
+                setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 3200);
+            }
+            function onError() {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.innerHTML = original;
+                msg.style.color = '#f87171';
+                msg.textContent = 'Something went wrong. Please email ' + WAITLIST.CONTACT_EMAIL + ' directly.';
+            }
+        });
+    }
+
+    /* ── Handle Google OAuth redirect back to the homepage ── */
+    function handleOAuthReturn() {
+        const q = new URLSearchParams(window.location.search);
+        if (!q.has('code') && !q.has('error')) return;
+
+        // Clean the query string so a refresh doesn't re-trigger
+        const clean = () => window.history.replaceState({}, document.title, window.location.pathname);
+
+        if (q.has('error')) {
+            toast('Google sign-in was cancelled. Please try again.', false);
+        } else {
+            // A backend must now exchange the `code` for tokens securely.
+            toast('Google authorization received. Completing sign-in requires the backend.', true);
+        }
+        clean();
+    }
+
+    function toast(text, ok) {
+        const el = document.createElement('div');
+        el.textContent = text;
+        el.style.cssText =
+            'position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:9999;' +
+            'max-width:90vw;padding:13px 18px;border-radius:12px;font-size:.85rem;font-weight:500;' +
+            'backdrop-filter:blur(10px);border:1px solid ' +
+            (ok ? 'rgba(0,229,153,.3)' : 'rgba(248,113,113,.3)') + ';' +
+            'background:' + (ok ? 'rgba(0,229,153,.12)' : 'rgba(248,113,113,.12)') + ';' +
+            'color:' + (ok ? '#3ef0b0' : '#f87171') + ';box-shadow:0 8px 30px rgba(0,0,0,.5)';
+        document.body.appendChild(el);
+        setTimeout(() => { el.style.transition = 'opacity .4s'; el.style.opacity = '0'; }, 5000);
+        setTimeout(() => el.remove(), 5500);
+    }
+
+    function isEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    /* ── Spinner style (shared) ── */
+    const s = document.createElement('style');
+    s.textContent =
+        '@keyframes spin{to{transform:rotate(360deg)}}' +
+        '.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(4,35,26,.3);' +
+        'border-top-color:#04231a;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px}';
+    document.head.appendChild(s);
+})();
