@@ -44,7 +44,8 @@
                 <span>Manohar<span class="brand-sub">GenAI</span></span>
             </a>
             <div class="nav-links">
-                <a href="#product">Product</a>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#orchestrator">Orchestrator</a>
                 <a href="#how">How it works</a>
                 <a href="#channels">Channels</a>
                 <a href="#stack">Tech</a>
@@ -63,7 +64,8 @@
         </div>
     </nav>
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#product">Product</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#orchestrator">Orchestrator</a>
         <a href="#how">How it works</a>
         <a href="#channels">Channels</a>
         <a href="#stack">Tech</a>
@@ -84,14 +86,14 @@
                     <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
                 <h1 class="hero-title">
-                    Turn your documentation into<br>
-                    <span class="text-gradient">an AI assistant that reasons</span>
+                    One AI assistant to<br>
+                    <span class="text-gradient">learn, analyze &amp; plan</span>
                 </h1>
                 <p class="hero-sub">
-                    Manohar GenAI builds production-grade AI support assistants powered by
-                    <strong>reasoning-based retrieval</strong> — the AI reads your manuals' structure and
-                    reasons about which sections answer a question, just like a human expert.
-                    No vector database. No chunking. Every answer cited to the exact page.
+                    Manohar GenAI builds the <strong>SalesWorx Collaborative Agent</strong> — a single
+                    assistant that answers product how-to questions with reasoning-based retrieval,
+                    surfaces business insights in plain English, and plans field routes. Users just ask;
+                    it routes each question to the right capability and cites its sources.
                 </p>
                 <div class="hero-cta">
                     <a href="signup.html" class="btn btn-primary btn-lg">
@@ -113,18 +115,18 @@
             <div class="terminal" data-reveal>
                 <div class="terminal-bar">
                     <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
-                    <span class="terminal-name">manohar-genai ~ rag-pipeline</span>
+                    <span class="terminal-name">manohar-genai ~ collaborative-agent</span>
                 </div>
                 <div class="terminal-body" id="terminalBody">
-                    <div class="tline"><span class="tprompt">$</span><span class="tcmd">ask "How do I add a new customer?"</span></div>
-                    <div class="tline out"><span class="tmut">› tree search across 4 manuals (parallel)…</span></div>
-                    <div class="tline out"><span class="tok">✓</span> matched <span class="thi">Customer Management → Add New Customer</span> (pp.40–41)</div>
-                    <div class="tline out"><span class="tmut">› extracting page text via PyMuPDF…</span></div>
-                    <div class="tline out tcode">To add a new customer in SalesWorx Credit Sales:
-1. Open <span class="k">Customer Management → Add New</span> <span class="s">[[1]]</span>
-2. Fill Name, Code, Address <span class="s">[[1]]</span>
-3. Click <span class="k">Save</span> to create the record <span class="s">[[1]]</span></div>
-                    <div class="tline out"><span class="tok">✓</span> answer generated &amp; cited in <span class="thi">6.2s</span> · 3 LLM calls</div>
+                    <div class="tline"><span class="tprompt">$</span><span class="tcmd">ask "VAN-DEMO Q1 revenue + how are visits tracked?"</span></div>
+                    <div class="tline out"><span class="tmut">› orchestrator planning… decomposed into 2 sub-tasks</span></div>
+                    <div class="tline out"><span class="thi">[data]</span> total revenue · VAN-DEMO · Q1 2026</div>
+                    <div class="tline out"><span class="tok">→</span> AED 291,833.10 <span class="tmut">(BigQuery · 1 row)</span></div>
+                    <div class="tline out"><span class="s">[help]</span> how are customer visits tracked?</div>
+                    <div class="tline out tcode">Customer visits are tracked in the SalesWorx mobile app.
+The app records <span class="k">Visit_Start_Date</span> &amp; <span class="k">Visit_End_Date</span>
+via GPS when an FSR checks in/out. <span class="s">[[Mobile Guide pp.45–47]]</span></div>
+                    <div class="tline out"><span class="tok">✓</span> synthesized answer in <span class="thi">11.4s</span> · 2 capabilities</div>
                     <div class="tline"><span class="tprompt">$</span><span class="cur"></span></div>
                 </div>
             </div>
@@ -175,6 +177,118 @@
                     </div>
                     <h3>Live in hours, not months</h3>
                     <p>Upload a PDF, index it once, deploy across web chat, an embeddable widget, MCP, or CLI. New hires get expert answers from day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CAPABILITIES (Collaborative Agent) ===== -->
+    <section class="section section-alt" id="capabilities">
+        <div class="container">
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>Collaborative Agent</span>
+                <h2 class="s-head">One assistant.<br><span class="text-gradient">Three kinds of expertise.</span></h2>
+                <p class="s-sub">Users don't choose a bot, a menu, or a system. They ask in plain language and the Collaborative Agent routes each question to the right capability — automatically.</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Help Agent</h3>
+                    <p>Product how-to and support guidance powered by reasoning-based retrieval, with every answer cited to the exact manual page.</p>
+                    <div class="cap-prompts">
+                        <span class="prompt-chip">How do I create a sales order in mobile?</span>
+                        <span class="prompt-chip">How do I process a credit note?</span>
+                    </div>
+                </div>
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 14l3-3 3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Data Agent</h3>
+                    <p>Business questions in natural language, answered with live data, structured tables, and charts — text-to-SQL over your warehouse.</p>
+                    <div class="cap-prompts">
+                        <span class="prompt-chip">Which FSR has the highest revenue?</span>
+                        <span class="prompt-chip">Compare Nov vs Dec 2025 revenue</span>
+                    </div>
+                </div>
+                <div class="value-card" data-reveal>
+                    <div class="value-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="18" r="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 6H15a3 3 0 010 6H9a3 3 0 000 6h6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Route Planner</h3>
+                    <p>Field-visit and route planning through conversation — organize coverage and optimize routes by time, distance, or priority.</p>
+                    <div class="cap-prompts">
+                        <span class="prompt-chip">Plan a route for Van VC03 tomorrow</span>
+                        <span class="prompt-chip">Optimize visits by travel time</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ORCHESTRATOR (Harness) ===== -->
+    <section class="section" id="orchestrator">
+        <div class="container">
+            <div class="head-wrap center">
+                <span class="eyebrow"><span class="eyebrow-dot"></span>Harness Orchestrator</span>
+                <h2 class="s-head">Complex questions,<br><span class="text-gradient">decomposed &amp; synthesized.</span></h2>
+                <p class="s-sub">Real questions mix product help with live data. A simple router can only pick one path. The Harness orchestrator breaks a question into sub-tasks, routes each to the right capability, runs them in parallel, and synthesizes one clear answer.</p>
+            </div>
+
+            <div class="orch-steps">
+                <div class="orch-step" data-reveal>
+                    <div class="orch-step-n">01 · DECOMPOSE</div>
+                    <h4>Understand</h4>
+                    <p>Split a multi-part question into atomic sub-tasks.</p>
+                </div>
+                <div class="orch-step" data-reveal>
+                    <div class="orch-step-n">02 · ROUTE</div>
+                    <h4>Classify</h4>
+                    <p>Send each sub-task to Support (RAG) or Insights (SQL).</p>
+                </div>
+                <div class="orch-step" data-reveal>
+                    <div class="orch-step-n">03 · EXECUTE</div>
+                    <h4>Run in parallel</h4>
+                    <p>Each capability resolves its own sub-task concurrently.</p>
+                </div>
+                <div class="orch-step" data-reveal>
+                    <div class="orch-step-n">04 · SYNTHESIZE</div>
+                    <h4>Summarize</h4>
+                    <p>Combine results into one cited executive summary.</p>
+                </div>
+            </div>
+
+            <div class="orch-demo" data-reveal>
+                <div class="orch-q">
+                    <span>user asks</span>
+                    "Evaluate FSR VAN-DEMO for Q1 2026 — total revenue, number of orders, average order value, and explain how customer visits are tracked in the mobile app."
+                </div>
+                <div class="orch-tasks">
+                    <div class="orch-task">
+                        <span class="orch-badge sql">SQL</span>
+                        <span class="orch-task-text">Total revenue · VAN-DEMO · Q1 2026</span>
+                        <span class="orch-task-res">AED 291,833.10</span>
+                    </div>
+                    <div class="orch-task">
+                        <span class="orch-badge sql">SQL</span>
+                        <span class="orch-task-text">Number of orders</span>
+                        <span class="orch-task-res">847</span>
+                    </div>
+                    <div class="orch-task">
+                        <span class="orch-badge sql">SQL</span>
+                        <span class="orch-task-text">Average order value</span>
+                        <span class="orch-task-res">AED 344.55</span>
+                    </div>
+                    <div class="orch-task">
+                        <span class="orch-badge rag">RAG</span>
+                        <span class="orch-task-text">How are customer visits tracked?</span>
+                        <span class="orch-task-res">Mobile Guide pp.45–47</span>
+                    </div>
+                </div>
+                <div class="orch-summary">
+                    <b>Executive summary —</b> FSR VAN-DEMO generated AED 291,833 across 847 orders in Q1 2026 (AOV AED 344.55). Visits are GPS-tracked in the mobile app via Visit start/end timestamps.
                 </div>
             </div>
         </div>

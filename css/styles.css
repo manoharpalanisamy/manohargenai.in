@@ -716,6 +716,114 @@ img, svg { display: block; max-width: 100%; }
 .stack-chip b { color: var(--accent); font-weight: 600; }
 
 /* ============================================================
+   CAPABILITIES — example prompt chips
+   ============================================================ */
+.cap-prompts { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.prompt-chip {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    background: var(--bg-base);
+    border: 1px solid var(--border-default);
+    border-radius: var(--r-md);
+    padding: 8px 12px 8px 26px;
+    position: relative;
+    transition: border-color 0.2s, color 0.2s;
+}
+.prompt-chip::before {
+    content: '›';
+    position: absolute;
+    left: 12px;
+    color: var(--accent);
+    font-weight: 700;
+}
+.value-card:hover .prompt-chip { border-color: var(--border-strong); }
+
+/* ============================================================
+   ORCHESTRATOR
+   ============================================================ */
+.orch-steps {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 880px;
+    margin: 0 auto 40px;
+}
+.orch-step {
+    flex: 1;
+    min-width: 180px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-default);
+    border-radius: var(--r-lg);
+    padding: 20px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+}
+.orch-step:hover { border-color: var(--border-accent); transform: translateY(-3px); }
+.orch-step-n {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+.orch-step h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -0.01em; }
+.orch-step p { font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.5; }
+
+.orch-demo {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-default);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+}
+.orch-q {
+    padding: 22px 26px;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.96rem;
+    color: var(--text-primary);
+    line-height: 1.55;
+}
+.orch-q span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.orch-tasks { padding: 16px 26px; display: flex; flex-direction: column; gap: 10px; }
+.orch-task { display: flex; align-items: center; gap: 14px; }
+.orch-badge {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 4px 0;
+    width: 54px;
+    text-align: center;
+    border-radius: var(--r-sm);
+    flex-shrink: 0;
+}
+.orch-badge.sql { background: rgba(56,189,248,0.12); color: var(--sky); border: 1px solid rgba(56,189,248,0.25); }
+.orch-badge.rag { background: var(--accent-subtle); color: var(--accent); border: 1px solid var(--border-accent); }
+.orch-task-text { flex: 1; font-size: 0.84rem; color: var(--text-secondary); }
+.orch-task-res { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+.orch-summary {
+    padding: 18px 26px;
+    border-top: 1px solid var(--border-subtle);
+    background: rgba(0, 229, 153, 0.03);
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.orch-summary b { color: var(--accent); }
+
+/* ============================================================
    LIVE DEMO BANNER
    ============================================================ */
 .demo {
@@ -934,4 +1042,8 @@ img, svg { display: block; max-width: 100%; }
     .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
     .terminal-body { font-size: 0.7rem; padding: 16px; }
     .arch-foot { gap: 18px; }
+    .orch-task { flex-wrap: wrap; gap: 6px 12px; }
+    .orch-task-text { flex-basis: 100%; order: 3; }
+    .orch-task-res { margin-left: auto; }
+    .orch-step { min-width: 100%; }
 }

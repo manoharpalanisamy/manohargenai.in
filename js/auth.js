@@ -6,93 +6,119 @@
     'use strict';
 
     /* ============================================================
-       GOOGLE OAUTH CONFIG
+       GOOGLE SIGN-IN (Google Identity Services — client-side)
        ------------------------------------------------------------
-       Only the PUBLIC client_id lives here — this is safe to ship
-       to the browser. The client_secret must NEVER appear in
-       front-end code; it is used only on a backend server to
-       exchange the authorization `code` for tokens.
+       Uses GIS token flow, which signs users in entirely in the
+       browser using only the PUBLIC client_id. No backend and no
+       client_secret are required (the secret must never live in
+       front-end code). The GIS library is loaded via:
+         <script src="https://accounts.google.com/gsi/client" async></script>
 
-       Registered in Google Cloud Console (project divine-voice-498406-m8):
+       Google Cloud Console (project divine-voice-498406-m8):
          • Authorised JavaScript origins:  https://manohargenai.in
-         • Authorised redirect URIs:        https://manohargenai.in
-       To complete real sign-in you still need a backend endpoint
-       that performs the secure code→token exchange.
+       NOTE: Google sign-in only works on an authorised origin
+       (https://manohargenai.in), not file:// or localhost unless
+       you also add that origin in the console.
        ============================================================ */
     const GOOGLE_OAUTH = {
-        CONFIGURED: true,
         CLIENT_ID: '113629175249-pdc6b48cpes5k6hn0dsa540gosk7ilsd.apps.googleusercontent.com',
-        REDIRECT_URI: 'https://manohargenai.in',  // must exactly match a registered redirect URI
         SCOPE: 'openid email profile',
-        RESPONSE_TYPE: 'code',                    // 'code' (needs backend) — use 'token' for pure client-side
-        AUTH_ENDPOINT: 'https://accounts.google.com/o/oauth2/v2/auth'
+        USERINFO: 'https://www.googleapis.com/oauth2/v3/userinfo'
     };
 
-    /**
-     * Build the Google authorization URL.
-     * `state` carries the intent (login/signup) and a CSRF nonce.
-     */
-    function buildGoogleAuthUrl(intent) {
-        const nonce = Math.random().toString(36).slice(2) + Date.now().toString(36);
-        try { sessionStorage.setItem('oauth_state', nonce); } catch (_) {}
-
-        const params = new URLSearchParams({
-            client_id: GOOGLE_OAUTH.CLIENT_ID,
-            redirect_uri: GOOGLE_OAUTH.REDIRECT_URI,
-            response_type: GOOGLE_OAUTH.RESPONSE_TYPE,
-            scope: GOOGLE_OAUTH.SCOPE,
-            state: intent + ':' + nonce,
-            access_type: 'offline',
-            include_granted_scopes: 'true',
-            prompt: 'select_account'
-        });
-        return GOOGLE_OAUTH.AUTH_ENDPOINT + '?' + params.toString();
-    }
+    let _tokenClient = null;
+    let _intent = 'login';
 
     document.addEventListener('DOMContentLoaded', () => {
         injectSpinner();
-        initGoogleButton();
+        initGoogleAuth();
         initPasswordToggles();
         initLogin();
         initSignup();
-        handleOAuthRedirect(); // graceful handling if Google redirects back
     });
 
-    /* ── Google OAuth button ── */
-    function initGoogleButton() {
+    /* ── Wire up the Google button ── */
+    function initGoogleAuth() {
         const btn = document.getElementById('googleBtn');
         if (!btn) return;
-        const intent = document.getElementById('signupForm') ? 'signup' : 'login';
+        _intent = document.getElementById('signupForm') ? 'signup' : 'login';
+        btn.addEventListener('click', onGoogleClick);
+    }
 
-        btn.addEventListener('click', () => {
-            if (GOOGLE_OAUTH.CONFIGURED &&
-                !GOOGLE_OAUTH.CLIENT_ID.startsWith('YOUR_')) {
-                // Real flow — redirect to Google's consent screen
-                window.location.href = buildGoogleAuthUrl(intent);
-            } else {
-                // Not configured yet — fail gracefully with guidance
-                const msg = getMsgEl();
-                showMsg(msg, 'err',
-                    'Google sign-in isn\'t connected yet. Add your Client ID in js/auth.js (see the GOOGLE_OAUTH block) to enable it.');
-            }
+    /* Lazily create the GIS token client (the library loads async). */
+    function ensureTokenClient() {
+        if (_tokenClient) return _tokenClient;
+        if (!(window.google && google.accounts && google.accounts.oauth2)) return null;
+        _tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: GOOGLE_OAUTH.CLIENT_ID,
+            scope: GOOGLE_OAUTH.SCOPE,
+            callback: handleTokenResponse
+        });
+        return _tokenClient;
+    }
+
+    function onGoogleClick() {
+        const msg = getMsgEl();
+        const client = ensureTokenClient();
+        if (!client) {
+            showMsg(msg, 'err',
+                'Google sign-in is still loading (or this page isn\'t served from an authorised domain). Please retry on https://manohargenai.in.');
+            return;
+        }
+        hideMsg(msg);
+        setGoogleLoading(true);
+        try {
+            client.requestAccessToken();
+        } catch (e) {
+            setGoogleLoading(false);
+            showMsg(msg, 'err', 'Could not open Google sign-in. Please try again.');
+        }
+    }
+
+    /* GIS calls this with an access token (or an error). */
+    function handleTokenResponse(resp) {
+        const msg = getMsgEl();
+        if (!resp || resp.error || !resp.access_token) {
+            setGoogleLoading(false);
+            showMsg(msg, 'err', 'Google sign-in was cancelled or failed. Please try again.');
+            return;
+        }
+        fetch(GOOGLE_OAUTH.USERINFO, {
+            headers: { Authorization: 'Bearer ' + resp.access_token }
+        })
+        .then(r => r.json())
+        .then(profile => {
+            try {
+                localStorage.setItem('mg_user', JSON.stringify({
+                    email: profile.email || '',
+                    name: profile.name || '',
+                    picture: profile.picture || '',
+                    ts: Date.now()
+                }));
+            } catch (_) {}
+            const who = profile.name || profile.email || 'your Google account';
+            showMsg(msg, 'ok', 'Signed in as ' + who + '. Redirecting…');
+            setTimeout(() => { window.location.href = 'index.html'; }, 1100);
+        })
+        .catch(() => {
+            setGoogleLoading(false);
+            showMsg(msg, 'err', 'Signed in, but your profile couldn\'t be loaded. Please try again.');
         });
     }
 
-    /* ── If Google redirected back with ?code= or ?error= ── */
-    function handleOAuthRedirect() {
-        const q = new URLSearchParams(window.location.search);
-        if (!q.has('code') && !q.has('error')) return;
-        const msg = getMsgEl();
-        if (!msg) return;
-
-        if (q.has('error')) {
-            showMsg(msg, 'err', 'Google sign-in was cancelled or failed. Please try again.');
+    function setGoogleLoading(on) {
+        const btn = document.getElementById('googleBtn');
+        if (!btn) return;
+        if (on) {
+            btn.dataset.html = btn.dataset.html || btn.innerHTML;
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            btn.innerHTML = '<span class="spin"></span> Connecting to Google…';
         } else {
-            // A real app would now exchange the `code` server-side for tokens.
-            showMsg(msg, 'ok', 'Google authorization received. Connect your backend to complete sign-in.');
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            if (btn.dataset.html) btn.innerHTML = btn.dataset.html;
         }
-        // Clean the URL so refresh doesn't re-trigger
-        window.history.replaceState({}, document.title, window.location.pathname);
     }
 
     /* ── Password show/hide ── */
